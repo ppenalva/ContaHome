@@ -1,0 +1,47 @@
+[
+    {
+        "id": 1,
+        "number": "0001",
+        "date": "2022-04-27T09:00:00.000Z",
+        "description": "Primer posting",
+        "debitAccount": "1001",
+        "creditAccount": "1002",
+        "amount": 1000.00,
+    },
+    {
+        "id": 2,
+        "number": "0002",
+        "date": "2022-04-26T09:00:00.000Z",
+        "description": "Segundo posting",
+        "debitAccount": "1001",
+        "creditAccount": "1003",
+        "amount": 1000.00,
+    },
+    {
+        "id": 3,
+        "number": "0003",
+        "date": "2022-04-25T09:00:00.000Z",
+        "description": "Tercer posting",
+        "debitAccount": "1002",
+        "creditAccount": "1003",
+        "amount": 1000.00,
+    },
+    {
+        "id": 4,
+        "number": "0004",
+        "date": "2022-04-24T09:00:00.000Z",
+        "description": "Cuarto posting",
+        "debitAccount": "1001",
+        "creditAccount": "1005",
+        "amount": 1000.00,
+    },
+    {
+        "id": 5,
+        "number": "0005",
+        "date": "2022-04-23T09:00:00.000Z",
+        "description": "Quinto posting",
+        "debitAccount": "1005",
+        "creditAccount": "1007",
+        "amount": 1000.00,
+    }
+]
