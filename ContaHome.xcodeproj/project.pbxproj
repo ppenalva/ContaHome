@@ -22,7 +22,8 @@
 		6E2303D628193C9E005815D4 /* AccountDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2303D528193C9E005815D4 /* AccountDetail.swift */; };
 		6E2303D828193F21005815D4 /* Posting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2303D728193F21005815D4 /* Posting.swift */; };
 		6E2303DA2819406F005815D4 /* postingData.json in Resources */ = {isa = PBXBuildFile; fileRef = 6E2303D92819406F005815D4 /* postingData.json */; };
-		6E2303DC2819496A005815D4 /* PostingRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2303DB2819496A005815D4 /* PostingRow.swift */; };
+		6E2303DC2819496A005815D4 /* PostingDebitRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2303DB2819496A005815D4 /* PostingDebitRow.swift */; };
+		6E4E5CAE281A99DC00010D7D /* PostingCreditRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4E5CAD281A99DC00010D7D /* PostingCreditRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,7 +63,8 @@
 		6E2303D528193C9E005815D4 /* AccountDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetail.swift; sourceTree = "<group>"; };
 		6E2303D728193F21005815D4 /* Posting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posting.swift; sourceTree = "<group>"; };
 		6E2303D92819406F005815D4 /* postingData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = postingData.json; sourceTree = "<group>"; };
-		6E2303DB2819496A005815D4 /* PostingRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingRow.swift; sourceTree = "<group>"; };
+		6E2303DB2819496A005815D4 /* PostingDebitRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingDebitRow.swift; sourceTree = "<group>"; };
+		6E4E5CAD281A99DC00010D7D /* PostingCreditRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingCreditRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,7 +177,8 @@
 				6E2303D1281939C4005815D4 /* AccountRow.swift */,
 				6E2303D328193B4F005815D4 /* AccountList.swift */,
 				6E2303D528193C9E005815D4 /* AccountDetail.swift */,
-				6E2303DB2819496A005815D4 /* PostingRow.swift */,
+				6E2303DB2819496A005815D4 /* PostingDebitRow.swift */,
+				6E4E5CAD281A99DC00010D7D /* PostingCreditRow.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -314,10 +317,11 @@
 			files = (
 				6E2303A0281934F7005815D4 /* ContentView.swift in Sources */,
 				6E2303CF281938D0005815D4 /* ModelData.swift in Sources */,
+				6E4E5CAE281A99DC00010D7D /* PostingCreditRow.swift in Sources */,
 				6E2303D628193C9E005815D4 /* AccountDetail.swift in Sources */,
 				6E2303D2281939C4005815D4 /* AccountRow.swift in Sources */,
 				6E2303D828193F21005815D4 /* Posting.swift in Sources */,
-				6E2303DC2819496A005815D4 /* PostingRow.swift in Sources */,
+				6E2303DC2819496A005815D4 /* PostingDebitRow.swift in Sources */,
 				6E23039E281934F7005815D4 /* ContaHomeApp.swift in Sources */,
 				6E2303CA281935F0005815D4 /* Account.swift in Sources */,
 				6E2303D428193B4F005815D4 /* AccountList.swift in Sources */,

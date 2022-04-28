@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PostingRow: View {
+struct PostingDebitRow: View {
     var posting: Posting
     
     var body: some View {
@@ -24,18 +24,18 @@ struct PostingRow: View {
             
             }
             HStack {
-                Text(posting.firstAccount)
-                }
+                Text(posting.secondAccount)
+                
     Spacer()
         
-            
+            }
             }
         }
     }
 
 
-struct PostingRow_Previews: PreviewProvider {
+struct PostingDebitRow_Previews: PreviewProvider {
     static var previews: some View {
-        PostingRow(posting: postings[0])
+        PostingDebitRow(posting: postings[0])
     }
 }

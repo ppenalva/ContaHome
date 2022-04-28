@@ -33,16 +33,17 @@ struct AccountDetail: View {
                 List(filteredPostings) { posting in
                 NavigationLink {
                 } label: {
-                    
-                    PostingRow(posting: posting)
+                    if (account.number == posting.firstAccount) {
+                    PostingDebitRow(posting: posting)
+                    } else {
+                        PostingCreditRow(posting: posting)
+                    }
             
             }
            
         }
-        .navigationTitle(account.number)
-        
+       .navigationTitle(account.number + " " + account.name)
     }
-   
 }
 
 struct AccountDetail_Previews: PreviewProvider {
