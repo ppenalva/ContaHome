@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct AccountList: View {
+    
+    
+    
     var body: some View {
         NavigationView {
             List(accounts) { account in
@@ -16,9 +19,10 @@ struct AccountList: View {
                 } label: {
                     AccountRow(account: account)
                 }
+                
             }
-            .navigationTitle("Accounts")
         }
+        .navigationTitle("Account")
     }
 }
 

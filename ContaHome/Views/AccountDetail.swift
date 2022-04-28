@@ -8,27 +8,45 @@
 import SwiftUI
 
 struct AccountDetail: View {
+
     var account: Account
+    
+    
     
     var filteredPostings: [Posting] {
         postings.filter { posting in
-            (posting.debitAccount == account.number || posting.creditAccount == account.number)
-        }
+            (posting.firstAccount == account.number || posting.secondAccount == account.number)
+
     }
+    }
+   
+    
+    
+    
     
     var body: some View {
-        List(filteredPostings) { posting in
-                NavigationLink {
-                    
-                } label: {
-                    PostingRow(posting: posting)
-            }
+        
+        ForEach (filteredPostings) { posting in
+        
         }
+        
+                List(filteredPostings) { posting in
+                NavigationLink {
+                } label: {
+                    
+                    PostingRow(posting: posting)
+            
+            }
+           
+        }
+        .navigationTitle(account.number)
+        
     }
+   
 }
 
 struct AccountDetail_Previews: PreviewProvider {
     static var previews: some View {
-        AccountDetail(account: accounts[0])
+        AccountDetail(account: accounts[1])
     }
 }

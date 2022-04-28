@@ -15,21 +15,24 @@ struct PostingRow: View {
         VStack {
             HStack {
                 Text(posting.date)
-                Spacer()
+                    
+            
                 Text(posting.description)
-                Spacer()
-                Text(String(format: "%.2f", posting.amount))
+                    Spacer()
+                Text(String(format: "%.2f", posting.debitAmount))
+            Text(String(format: "%.2f", posting.creditAmount))
+            
             }
             HStack {
-                Text(posting.debitAccount)
-    
-                Spacer()
-                Text(posting.creditAccount)
+                Text(posting.firstAccount)
+                }
+    Spacer()
+        
             
             }
         }
     }
-}
+
 
 struct PostingRow_Previews: PreviewProvider {
     static var previews: some View {
