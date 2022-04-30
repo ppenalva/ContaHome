@@ -15,7 +15,7 @@ struct AccountList: View {
         NavigationView {
             List(accounts) { account in
                 NavigationLink {
-                    AccountDetail(account: account)
+                    AccountDetail(account: account )
                 } label: {
                     AccountRow(account: account)
                 }

@@ -13,7 +13,9 @@ struct Posting: Hashable, Codable, Identifiable {
     var date: String
     var description: String
     var firstAccount: String
+    var firstAccountName: String
     var secondAccount: String
+    var secondAccountName: String
     var debitAmount: Double
     var creditAmount: Double
     }

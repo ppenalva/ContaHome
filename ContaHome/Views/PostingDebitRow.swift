@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PostingDebitRow: View {
+    
     var posting: Posting
     
     var body: some View {
@@ -15,23 +16,23 @@ struct PostingDebitRow: View {
         VStack {
             HStack {
                 Text(posting.date)
-                    
-            
+                
+                
                 Text(posting.description)
-                    Spacer()
+                Spacer()
                 Text(String(format: "%.2f", posting.debitAmount))
-            Text(String(format: "%.2f", posting.creditAmount))
-            
+                Text(String(format: "%.2f", posting.creditAmount))
+                
             }
             HStack {
                 Text(posting.secondAccount)
+                Text(posting.secondAccountName)
+                Spacer()
                 
-    Spacer()
-        
-            }
             }
         }
     }
+}
 
 
 struct PostingDebitRow_Previews: PreviewProvider {

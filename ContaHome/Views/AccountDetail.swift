@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AccountDetail: View {
-
+    
     var account: Account
     
     
@@ -16,33 +16,29 @@ struct AccountDetail: View {
     var filteredPostings: [Posting] {
         postings.filter { posting in
             (posting.firstAccount == account.number || posting.secondAccount == account.number)
-
+            
+        }
     }
-    }
-   
+    
     
     
     
     
     var body: some View {
         
-        ForEach (filteredPostings) { posting in
-        
-        }
-        
-                List(filteredPostings) { posting in
-                NavigationLink {
-                } label: {
-                    if (account.number == posting.firstAccount) {
+        List(filteredPostings) { posting in
+            NavigationLink {
+            } label: {
+                if (account.number == posting.firstAccount) {
                     PostingDebitRow(posting: posting)
-                    } else {
-                        PostingCreditRow(posting: posting)
-                    }
-            
+                } else {
+                    PostingCreditRow(posting: posting)
+                }
             }
-           
+            
         }
-       .navigationTitle(account.number + " " + account.name)
+        .navigationTitle(account.number + " " + account.name)
+        
     }
 }
 

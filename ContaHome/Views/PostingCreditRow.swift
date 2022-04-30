@@ -15,23 +15,24 @@ struct PostingCreditRow: View {
         VStack {
             HStack {
                 Text(posting.date)
-                    
-            
+                
+                
                 Text(posting.description)
-                    Spacer()
+                Spacer()
                 Text(String(format: "%.2f", posting.creditAmount))
-            Text(String(format: "%.2f", posting.debitAmount))
-            
+                Text(String(format: "%.2f", posting.debitAmount))
+                
             }
             HStack {
                 Text(posting.firstAccount)
+                Text(posting.firstAccountName)
                 
-    Spacer()
-        
-            }
+                Spacer()
+                
             }
         }
     }
+}
 
 
 struct PostingCreditRow_Previews: PreviewProvider {
