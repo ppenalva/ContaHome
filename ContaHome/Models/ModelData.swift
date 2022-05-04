@@ -6,9 +6,12 @@
 //
 
 import Foundation
+import Combine
 
-var accounts: [Account] = load("accountData.json")
-var postings: [Posting] = load("postingData.json")
+final class ModelData: ObservableObject {
+ //   @Published var accounts: [Account] = load("accountData.json")
+//    @Published var postings: [Posting] = load("postingData.json")
+}
 
 func load<T: Decodable>(_ filename: String) -> T {
     let data: Data

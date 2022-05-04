@@ -1,6 +1,5 @@
 [
     {
-        "id": 1,
         "number": "0001",
         "date": "2022-04-27",
         "description": "Primer posting",
@@ -12,7 +11,6 @@
         "creditAmount": 0.00,
     },
     {
-        "id": 2,
         "number": "0002",
         "date": "2022-04-26",
         "description": "Segundo posting",
@@ -24,7 +22,6 @@
         "creditAmount": 0.00,
     },
     {
-        "id": 3,
         "number": "0003",
         "date": "2022-04-25",
         "description": "Tercer posting",
@@ -36,7 +33,6 @@
         "creditAmount": 15000.00,
     },
     {
-        "id": 4,
         "number": "0004",
         "date": "2022-04-24",
         "description": "Cuarto posting",
@@ -48,7 +44,6 @@
         "creditAmount": 0.00,
     },
     {
-        "id": 5,
         "number": "0005",
         "date": "2022-04-23",
         "description": "Quinto posting",

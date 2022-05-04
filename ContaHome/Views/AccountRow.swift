@@ -23,6 +23,8 @@ struct AccountRow: View {
 }
 
 struct AccountRow_Previews: PreviewProvider {
+    static var accounts = Account.sampleData
+    
     static var previews: some View {
         Group {
             AccountRow(account: accounts[0])

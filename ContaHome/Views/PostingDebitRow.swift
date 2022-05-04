@@ -11,21 +11,32 @@ struct PostingDebitRow: View {
     
     var posting: Posting
     
+    static let taskDateFormat: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        return formatter
+    }()
+    
     var body: some View {
+        
+        
         
         VStack {
             HStack {
-                Text(posting.date)
+               
+                Text(posting.date, formatter: PostingDebitRow.taskDateFormat)
                 
+            
+   
                 
                 Text(posting.description)
                 Spacer()
-                Text(String(format: "%.2f", posting.debitAmount))
-                Text(String(format: "%.2f", posting.creditAmount))
+               Text(String(format: "%.2f", posting.debitAmount))
+            Text(String(format: "%.2f", posting.creditAmount))
                 
             }
             HStack {
-                Text(posting.secondAccount)
+               Text(posting.secondAccount)
                 Text(posting.secondAccountName)
                 Spacer()
                 
@@ -34,8 +45,9 @@ struct PostingDebitRow: View {
     }
 }
 
-
 struct PostingDebitRow_Previews: PreviewProvider {
+    static var postings = Posting.sampleData
+
     static var previews: some View {
         PostingDebitRow(posting: postings[0])
     }

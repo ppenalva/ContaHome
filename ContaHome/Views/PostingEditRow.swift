@@ -8,16 +8,22 @@
 import SwiftUI
 
 struct PostingEditRow: View {
-    @Binding var posting: Posting
+    
+    @Binding var data: Posting.Data
+    @Binding var accounts: [Account]
+   
     
     var body: some View {
-        
         VStack {
             HStack {
-                TextField ("Date", text: $posting.date)
+                
+               
+                
+                DatePicker ("Date", selection: $data.date, in:...Date(), displayedComponents: .date)
+ 
                 
                 
-                TextField ("Description", text: $posting.description)
+                TextField ("Description", text: $data.description)
                 Spacer()
                 
                 //                TextField("Debit Amount",text:String( format: "%.1f",$posting.debitAmount)
@@ -25,8 +31,19 @@ struct PostingEditRow: View {
                 //
             }
             HStack {
-                TextField("Account", text: $posting.firstAccount)
-                //              Text(posting.firstAccountName)
+               
+                NavigationView{
+                    Form {
+                        Section{
+                
+                Picker("Account", selection: $data.secondAccount) {
+                    ForEach(accounts, id: \.id) {account in
+                        Text(account.number)
+                    }
+                }
+                }
+                }
+                }
                 
                 Spacer()
                 
@@ -37,6 +54,8 @@ struct PostingEditRow: View {
 
 
 struct PostingEditRow_Previews: PreviewProvider {
+    static var postings = Posting.sampleData
+    
     static var previews: some View {
         PostingCreditRow(posting: postings[0])
     }

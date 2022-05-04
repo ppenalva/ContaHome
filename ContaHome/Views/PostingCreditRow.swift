@@ -7,14 +7,22 @@
 
 import SwiftUI
 
+
+
 struct PostingCreditRow: View {
     var posting: Posting
+    
+    static let taskDateFormat: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        return formatter
+    }()
     
     var body: some View {
         
         VStack {
             HStack {
-                Text(posting.date)
+                Text(posting.date, formatter: PostingDebitRow.taskDateFormat)
                 
                 
                 Text(posting.description)
@@ -36,6 +44,8 @@ struct PostingCreditRow: View {
 
 
 struct PostingCreditRow_Previews: PreviewProvider {
+    static var postings = Posting.sampleData
+    
     static var previews: some View {
         PostingCreditRow(posting: postings[0])
     }

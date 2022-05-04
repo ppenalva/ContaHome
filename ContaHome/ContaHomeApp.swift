@@ -8,10 +8,15 @@
 import SwiftUI
 
 @main
+
+
+
 struct ContaHomeApp: App {
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+               
         }
     }
 }
