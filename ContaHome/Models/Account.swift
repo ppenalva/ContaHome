@@ -35,23 +35,23 @@ struct Data {
     var type: String = ""
    }
 
-var dataAccount: Data { Data(
+var data: Data { Data(
     number: number,
     name: name,
     type: type)
 }
 
 mutating func update(from dataAccount: Data) {
-    number = dataAccount.number
-    name = dataAccount.name
-    type = dataAccount.type
+    number = data.number
+    name = data.name
+    type = data.type
     }
 
-init(dataAccount: Data) {
+init(data: Data) {
     id = UUID()
-    number = dataAccount.number
-    name = dataAccount.name
-    type = dataAccount.type
+    number = data.number
+    name = data.name
+    type = data.type
     }
 
 }

@@ -40,10 +40,7 @@ extension AccountGroup {
             self.number = number
         }
     }
-}
 
-
-extension AccountGroup {
     
     struct Data {
         var number: String = "0000"
@@ -51,23 +48,23 @@ extension AccountGroup {
         var group: [AccountInGroup] = []
     }
     
-    var dataAccountGroup: Data { Data(
+    var data: Data { Data(
         number: number,
         name: name,
         group: group)
     }
-    
-    mutating func update(from dataAccountGroup: Data) {
-        number = dataAccountGroup.number
-        name = dataAccountGroup.name
-        group = dataAccountGroup.group
+
+    mutating func update(from data: Data) {
+        number = data.number
+        name = data.name
+        group = data.group
     }
-    
-    init(dataAccountGroup: Data) {
+
+    init(data: Data) {
         id = UUID()
-        number = dataAccountGroup.number
-        name = dataAccountGroup.name
-        group = dataAccountGroup.group
+        number = data.number
+        name = data.name
+        group = data.group
     }
     
 }

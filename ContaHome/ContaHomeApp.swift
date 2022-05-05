@@ -10,13 +10,16 @@ import SwiftUI
 @main
 
 struct ContaHomeApp: App {
+    @State private var accountGroups = AccountGroup.sampleData
+    
+    
     @State var menuChoice = "0"
     var body: some Scene {
         WindowGroup {
             if menuChoice == "0" {
                 ContentView()
             } else {
-                ContentView1()
+                GroupList(accountGroups: $accountGroups)
             }
         }
         .commands {

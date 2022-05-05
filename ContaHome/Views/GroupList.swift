@@ -9,27 +9,54 @@ import SwiftUI
 
 struct GroupList: View {
     
-    @State var accountGroups = AccountGroup.sampleData
-    @State var accounts = Account.sampleData
+    @Binding var accountGroups: [AccountGroup]
+    @State private var isPresentingNewAccountGroup = false
+    @State private var newAccountGroupData = AccountGroup.Data()
     
     var body: some View {
         NavigationView {
-            List(accountGroups) { accountGroup in
-                NavigationLink {
-                    GroupDetail(accountGroup: accountGroup, accounts: $accounts)
-                } label: {
-                    GroupRow(accountGroup: accountGroup)
+            List {
+                ForEach($accountGroups) { $accountGroup in
+                    NavigationLink(destination: GroupDetail(accountGroup: $accountGroup)) {
+                        GroupRow(accountGroup: accountGroup)
+                    }
                 }
-                
             }
-           
-            .navigationTitle("AccountGroup")
+            .navigationTitle("GROUPS")
+            .toolbar {
+                Button(action: {
+                    isPresentingNewAccountGroup = true
+                }) {
+                    Image(systemName: "plus")
+                }
+            }
+            .sheet(isPresented: $isPresentingNewAccountGroup) {
+                NavigationView {
+                    GroupEdit(data: $newAccountGroupData)
+                        .toolbar {
+                            ToolbarItem(placement: .cancellationAction) {
+                                Button("Dismiss") {
+                                    isPresentingNewAccountGroup = false
+                                    newAccountGroupData = AccountGroup.Data()
+                                }
+                            }
+                            ToolbarItem(placement: .confirmationAction) {
+                                Button("Add") {
+                                    let newAccountGroup = AccountGroup(data: newAccountGroupData)
+                                    accountGroups.append(newAccountGroup)
+                                    isPresentingNewAccountGroup = false
+                                    newAccountGroupData = AccountGroup.Data()
+                                }
+                            }
+                        }
+                }
+            }
         }
     }
 }
 
-//struct AccountList_Previews: PreviewProvider {
-//    static var previews: some View {
-//        AccountList()
-//    }
-//}
+struct GroupList_Previews: PreviewProvider {
+    static var previews: some View {
+        GroupList(accountGroups: .constant(AccountGroup.sampleData))
+    }
+}
