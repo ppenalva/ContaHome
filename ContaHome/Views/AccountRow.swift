@@ -5,15 +5,12 @@
 //  Created by Pablo Penalva on 27/4/22.
 // cambio de prueba y ahora otro
 
-
 import SwiftUI
 
 struct AccountRow: View {
     var account: Account
     
-    
     var body: some View {
-        
         HStack {
             Text(account.number)
             Spacer()
@@ -22,7 +19,7 @@ struct AccountRow: View {
     }
 }
 
-struct AccountRow_Previews: PreviewProvider {
+struct Account_Previews: PreviewProvider {
     static var accounts = Account.sampleData
     
     static var previews: some View {

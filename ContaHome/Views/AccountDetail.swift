@@ -10,8 +10,12 @@ import SwiftUI
 struct AccountDetail: View {
     
     var account: Account
+    
     @Binding var postings: [Posting]
     @Binding var accounts: [Account]
+    @Binding var selectedAccount: Account
+    
+    
     @State private var isPresentingNewPostingView = false
     @State private var newPostingData = Posting.Data()
     
@@ -22,7 +26,6 @@ struct AccountDetail: View {
     }
     
     var body: some View {
-        
         List(filteredPostings) { posting in
             NavigationLink {
             } label: {
@@ -32,7 +35,6 @@ struct AccountDetail: View {
                     PostingCreditRow(posting: posting)
                 }
             }
-            
         }
         .navigationTitle(account.number + " " + account.name)
         .toolbar {
@@ -41,10 +43,10 @@ struct AccountDetail: View {
             }) {
                 Image(systemName: "plus")
             }
-        }
+                }
         .sheet(isPresented: $isPresentingNewPostingView) {
-            NavigationView {
-                PostingEditRow(data: $newPostingData, accounts: $accounts)
+            NavigationView  {
+                PostingEditRow( selectedAccount: $selectedAccount, data: $newPostingData, accounts: $accounts)
                 
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
@@ -58,6 +60,8 @@ struct AccountDetail: View {
                                 var newPosting = Posting(dataPosting: newPostingData)
                                 newPosting.firstAccount = account.number
                                 newPosting.firstAccountName = account.name
+                                newPosting.secondAccount = selectedAccount.number
+                                newPosting.secondAccountName = selectedAccount.name
                                 postings.append(newPosting)
                                 isPresentingNewPostingView = false
                                 newPostingData = Posting.Data()

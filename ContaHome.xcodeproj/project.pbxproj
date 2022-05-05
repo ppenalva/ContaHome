@@ -15,14 +15,16 @@
 		6E2303BA281934F9005815D4 /* ContaHomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2303B9281934F9005815D4 /* ContaHomeUITests.swift */; };
 		6E2303BC281934F9005815D4 /* ContaHomeUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2303BB281934F9005815D4 /* ContaHomeUITestsLaunchTests.swift */; };
 		6E2303CA281935F0005815D4 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2303C9281935F0005815D4 /* Account.swift */; };
-		6E2303CD2819374A005815D4 /* accountData.json in Resources */ = {isa = PBXBuildFile; fileRef = 6E2303CC2819374A005815D4 /* accountData.json */; };
-		6E2303CF281938D0005815D4 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2303CE281938D0005815D4 /* ModelData.swift */; };
 		6E2303D2281939C4005815D4 /* AccountRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2303D1281939C4005815D4 /* AccountRow.swift */; };
 		6E2303D428193B4F005815D4 /* AccountList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2303D328193B4F005815D4 /* AccountList.swift */; };
 		6E2303D628193C9E005815D4 /* AccountDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2303D528193C9E005815D4 /* AccountDetail.swift */; };
 		6E2303D828193F21005815D4 /* Posting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2303D728193F21005815D4 /* Posting.swift */; };
-		6E2303DA2819406F005815D4 /* postingData.json in Resources */ = {isa = PBXBuildFile; fileRef = 6E2303D92819406F005815D4 /* postingData.json */; };
 		6E2303DC2819496A005815D4 /* PostingDebitRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E2303DB2819496A005815D4 /* PostingDebitRow.swift */; };
+		6E42662E2822C11A00DFE45D /* ContentView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E42662D2822C11A00DFE45D /* ContentView1.swift */; };
+		6E4266302822D39100DFE45D /* AccountGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E42662F2822D39100DFE45D /* AccountGroup.swift */; };
+		6E4266322822D7A900DFE45D /* GroupRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4266312822D7A900DFE45D /* GroupRow.swift */; };
+		6E4266342822DAE000DFE45D /* GroupList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4266332822DAE000DFE45D /* GroupList.swift */; };
+		6E4266362822DC8100DFE45D /* GroupDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4266352822DC8100DFE45D /* GroupDetail.swift */; };
 		6E4E5CAE281A99DC00010D7D /* PostingCreditRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E4E5CAD281A99DC00010D7D /* PostingCreditRow.swift */; };
 		6E9B7306281AE2F800F63942 /* PostingEditRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E9B7305281AE2F800F63942 /* PostingEditRow.swift */; };
 /* End PBXBuildFile section */
@@ -57,14 +59,16 @@
 		6E2303B9281934F9005815D4 /* ContaHomeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContaHomeUITests.swift; sourceTree = "<group>"; };
 		6E2303BB281934F9005815D4 /* ContaHomeUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContaHomeUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		6E2303C9281935F0005815D4 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
-		6E2303CC2819374A005815D4 /* accountData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = accountData.json; sourceTree = "<group>"; };
-		6E2303CE281938D0005815D4 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		6E2303D1281939C4005815D4 /* AccountRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountRow.swift; sourceTree = "<group>"; };
 		6E2303D328193B4F005815D4 /* AccountList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountList.swift; sourceTree = "<group>"; };
 		6E2303D528193C9E005815D4 /* AccountDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountDetail.swift; sourceTree = "<group>"; };
 		6E2303D728193F21005815D4 /* Posting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Posting.swift; sourceTree = "<group>"; };
-		6E2303D92819406F005815D4 /* postingData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = postingData.json; sourceTree = "<group>"; };
 		6E2303DB2819496A005815D4 /* PostingDebitRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingDebitRow.swift; sourceTree = "<group>"; };
+		6E42662D2822C11A00DFE45D /* ContentView1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView1.swift; sourceTree = "<group>"; };
+		6E42662F2822D39100DFE45D /* AccountGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountGroup.swift; sourceTree = "<group>"; };
+		6E4266312822D7A900DFE45D /* GroupRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRow.swift; sourceTree = "<group>"; };
+		6E4266332822DAE000DFE45D /* GroupList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupList.swift; sourceTree = "<group>"; };
+		6E4266352822DC8100DFE45D /* GroupDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupDetail.swift; sourceTree = "<group>"; };
 		6E4E5CAD281A99DC00010D7D /* PostingCreditRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingCreditRow.swift; sourceTree = "<group>"; };
 		6E9B7305281AE2F800F63942 /* PostingEditRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostingEditRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,8 +123,8 @@
 			children = (
 				6E23039D281934F7005815D4 /* ContaHomeApp.swift */,
 				6E23039F281934F7005815D4 /* ContentView.swift */,
+				6E42662D2822C11A00DFE45D /* ContentView1.swift */,
 				6E2303D028193995005815D4 /* Views */,
-				6E2303CB2819371F005815D4 /* Resources */,
 				6E2303C8281935B5005815D4 /* Models */,
 				6E2303A1281934F8005815D4 /* Assets.xcassets */,
 				6E2303A6281934F8005815D4 /* ContaHome.entitlements */,
@@ -158,19 +162,10 @@
 			isa = PBXGroup;
 			children = (
 				6E2303C9281935F0005815D4 /* Account.swift */,
-				6E2303CE281938D0005815D4 /* ModelData.swift */,
 				6E2303D728193F21005815D4 /* Posting.swift */,
+				6E42662F2822D39100DFE45D /* AccountGroup.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		6E2303CB2819371F005815D4 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				6E2303CC2819374A005815D4 /* accountData.json */,
-				6E2303D92819406F005815D4 /* postingData.json */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		6E2303D028193995005815D4 /* Views */ = {
@@ -182,6 +177,9 @@
 				6E2303DB2819496A005815D4 /* PostingDebitRow.swift */,
 				6E4E5CAD281A99DC00010D7D /* PostingCreditRow.swift */,
 				6E9B7305281AE2F800F63942 /* PostingEditRow.swift */,
+				6E4266312822D7A900DFE45D /* GroupRow.swift */,
+				6E4266332822DAE000DFE45D /* GroupList.swift */,
+				6E4266352822DC8100DFE45D /* GroupDetail.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -291,8 +289,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E2303A5281934F8005815D4 /* Preview Assets.xcassets in Resources */,
-				6E2303CD2819374A005815D4 /* accountData.json in Resources */,
-				6E2303DA2819406F005815D4 /* postingData.json in Resources */,
 				6E2303A2281934F8005815D4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,16 +315,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E2303A0281934F7005815D4 /* ContentView.swift in Sources */,
-				6E2303CF281938D0005815D4 /* ModelData.swift in Sources */,
 				6E9B7306281AE2F800F63942 /* PostingEditRow.swift in Sources */,
 				6E4E5CAE281A99DC00010D7D /* PostingCreditRow.swift in Sources */,
 				6E2303D628193C9E005815D4 /* AccountDetail.swift in Sources */,
 				6E2303D2281939C4005815D4 /* AccountRow.swift in Sources */,
 				6E2303D828193F21005815D4 /* Posting.swift in Sources */,
 				6E2303DC2819496A005815D4 /* PostingDebitRow.swift in Sources */,
+				6E4266302822D39100DFE45D /* AccountGroup.swift in Sources */,
 				6E23039E281934F7005815D4 /* ContaHomeApp.swift in Sources */,
+				6E42662E2822C11A00DFE45D /* ContentView1.swift in Sources */,
 				6E2303CA281935F0005815D4 /* Account.swift in Sources */,
+				6E4266362822DC8100DFE45D /* GroupDetail.swift in Sources */,
 				6E2303D428193B4F005815D4 /* AccountList.swift in Sources */,
+				6E4266322822D7A900DFE45D /* GroupRow.swift in Sources */,
+				6E4266342822DAE000DFE45D /* GroupList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
