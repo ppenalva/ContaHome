@@ -10,7 +10,7 @@ import Foundation
 
 import Foundation
 
-struct AccountGroup: Identifiable {
+struct AccountGroup: Identifiable, Codable {
     var id: UUID
     var number: String
     var name: String
@@ -31,7 +31,7 @@ struct AccountGroup: Identifiable {
 }
 
 extension AccountGroup {
-    struct AccountInGroup: Identifiable {
+    struct AccountInGroup: Identifiable, Codable {
         let id : UUID
         var number: String
         

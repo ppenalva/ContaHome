@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AccountDetail: View {
     
-    var account: Account
+    @Binding var account: Account
     
     @Binding var postings: [Posting]
     @Binding var accounts: [Account]
@@ -57,7 +57,7 @@ struct AccountDetail: View {
                         }
                         ToolbarItem(placement: .confirmationAction) {
                             Button("Add") {
-                                var newPosting = Posting(dataPosting: newPostingData)
+                                var newPosting = Posting(data: newPostingData)
                                 newPosting.firstAccount = account.number
                                 newPosting.firstAccountName = account.name
                                 newPosting.secondAccount = selectedAccount.number
@@ -74,9 +74,10 @@ struct AccountDetail: View {
 }
 
 //struct AccountDetail_Previews: PreviewProvider {
+//    static var accounts = Account.sampleData
 //    static var previews: some View {
 //        NavigationView {
-//            AccountDetail(accounts: .constant(Account.sampleData.accounts[0]))
+//            AccountDetail(account: accounts[0], postings: .constant(Posting.sampleData), accounts: .constant(Account.sampleData), selectedAccount: accounts[1] )
 //        }
 //    }
 //}

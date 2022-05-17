@@ -18,6 +18,7 @@ struct GroupEdit: View {
         Form {
             NavigationView {
         VStack {
+            TextField("Number", text: $data.number)
             TextField("Name", text: $data.name)
             ForEach (data.group) { account in
                 Text(account.number)

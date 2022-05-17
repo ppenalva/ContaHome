@@ -72,7 +72,7 @@ extension Posting {
         var creditAmount: Double = 0.00
     }
     
-    var dataPosting: Data { Data(
+    var data: Data { Data(
         number: number,
         date: date,
         description: description,
@@ -84,29 +84,29 @@ extension Posting {
         creditAmount: creditAmount)
     }
     
-    mutating func update(from dataPosting: Data) {
-        number = dataPosting.number
-        date = dataPosting.date
-        description = dataPosting.description
-        firstAccount = dataPosting.firstAccount
-        firstAccountName = dataPosting.firstAccountName
-        secondAccount = dataPosting.secondAccount
-        secondAccountName = dataPosting.secondAccountName
-        debitAmount = dataPosting.debitAmount
-        creditAmount = dataPosting.creditAmount
+    mutating func update(from data: Data) {
+        number = data.number
+        date = data.date
+        description = data.description
+        firstAccount = data.firstAccount
+        firstAccountName = data.firstAccountName
+        secondAccount = data.secondAccount
+        secondAccountName = data.secondAccountName
+        debitAmount = data.debitAmount
+        creditAmount = data.creditAmount
     }
     
-    init(dataPosting: Data) {
+    init(data: Data) {
         id = UUID()
-        number = dataPosting.number
-        date = dataPosting.date
-        description = dataPosting.description
-        firstAccount = dataPosting.firstAccount
-        firstAccountName = dataPosting.firstAccountName
-        secondAccount = dataPosting.secondAccount
-        secondAccountName = dataPosting.secondAccountName
-        debitAmount = dataPosting.debitAmount
-        creditAmount = dataPosting.creditAmount
+        number = data.number
+        date = data.date
+        description = data.description
+        firstAccount = data.firstAccount
+        firstAccountName = data.firstAccountName
+        secondAccount = data.secondAccount
+        secondAccountName = data.secondAccountName
+        debitAmount = data.debitAmount
+        creditAmount = data.creditAmount
     }
     
 }

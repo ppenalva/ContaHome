@@ -10,18 +10,68 @@ import SwiftUI
 @main
 
 struct ContaHomeApp: App {
+    
+    @StateObject private var accountStore = AccountStore()
+    @StateObject private var postingStore = PostingStore()
+    @State private var listAccounts = ListAccount.sampleData
     @State private var accountGroups = AccountGroup.sampleData
     
-    
     @State var menuChoice = "0"
+    
+ 
+    
+    
     var body: some Scene {
         WindowGroup {
-            if menuChoice == "0" {
-                ContentView()
-            } else {
+            
+            switch menuChoice {
+                case "0":
+                NavigationView {
+                    
+                    AccountList(accounts: $accountStore.accounts, postings: $postingStore.postings) {
+                        AccountStore.save(accounts: accountStore.accounts) { result in
+                            if case .failure(let error) = result {
+                                fatalError(error.localizedDescription)
+                            }
+                        }
+                        PostingStore.save(postings: postingStore.postings) { result in
+                            if case .failure(let error) = result {
+                                fatalError(error.localizedDescription)
+                            }
+                        }
+                    }
+                }
+                .onAppear {
+                    AccountStore.load { result in
+                        switch result {
+                                           case .failure(let error):
+                                               fatalError(error.localizedDescription)
+                                           case .success(let accounts):
+                            accountStore.accounts = accounts
+                                           }
+                    }
+                    PostingStore.load { result in
+                        switch result {
+                                           case .failure(let error):
+                                               fatalError(error.localizedDescription)
+                                           case .success(let postings):
+                            postingStore.postings = postings
+                                           }
+                    }
+                }
+                
+            case "1":
+                GroupList(accountGroups: $accountGroups)
+                
+//           case "2":
+//                
+//            saveAction()
+                
+            default:
                 GroupList(accountGroups: $accountGroups)
             }
         }
+        
         .commands {
             CommandMenu("Custom Menu") {
                 
@@ -34,8 +84,15 @@ struct ContaHomeApp: App {
                 Button(action: {
         menuChoice = "1"
                 }, label: {
-                        Text("Reports")
-            })
+                        Text("Reports Definition")
+                })
+                
+                Button(action: {
+        menuChoice = "2"
+                }, label: {
+                        Text("Save")
+                })
+                
             }
         }
     }
