@@ -63,9 +63,9 @@ struct ContaHomeApp: App {
             case "1":
                 GroupList(accountGroups: $accountGroups)
                 
-//           case "2":
-//                
-//            saveAction()
+           case "2":
+                
+                ReportTwo(accounts: $accountStore.accounts, postings: $postingStore.postings)
                 
             default:
                 GroupList(accountGroups: $accountGroups)
@@ -90,7 +90,7 @@ struct ContaHomeApp: App {
                 Button(action: {
         menuChoice = "2"
                 }, label: {
-                        Text("Save")
+                        Text("Print Balance")
                 })
                 
             }

@@ -8,43 +8,76 @@
 import SwiftUI
 
 struct ReportTwo: View {
-
-    struct AccountBalancesList {
-    var number: String = ""
-    var name: String = ""
-    var balanceAmount: Double = 0.0
-    var total = 0.0
     
+    @Binding var accounts: [Account]
+    @Binding var postings: [Posting]
+    
+    @State var listLines = [ListReport]()
+    
+    class ListReport: Identifiable {
         
-        mutating func calculo() {
-            @Binding var accounts: [Account]
-            @Binding var postings: [Posting]
-    //        var accountBalancesList: [AccountBalancesList]
-            
-    //        for account in $accounts {
-    //            for posting in $postings {
-                    
+        var number: String = ""
+        var name: String = ""
+        var amount: Double = 0.0
+        
+        init( number: String, name: String, amount: Double) {
+            self.number = number
+            self.name = name
+            self.amount = amount
+        }
+        
+      
+    }
+    
+    func updateListReport() {
+        
+       
+        var totAmount: Double = 0.0
+        
+       
+        
+        for account in accounts {
+            for posting in postings {
+                if posting.firstAccount == account.number {
+                    totAmount += posting.debitAmount
+                    totAmount -= posting.creditAmount
                     
                 }
-  //              accountBalancesList.name = account.name
-  //          }
-            
-  //      }
+                if posting.secondAccount == account.number {
+                    totAmount -= posting.debitAmount
+                    totAmount += posting.creditAmount
+                }
+            }
         
-        
-        
-        
+            let listLine = ListReport( number:account.number, name:account.name, amount: totAmount)
+            listLines.append(listLine)
+            totAmount = 0.0
+        }
     }
-
    
     
-var body: some View {
+    var body: some View {
         
+         VStack {
+            
+            Text("Balance Report")
+             
+             List {
+            ForEach (listLines) { listLine in
 
-    Text("Hello World")
-    
+                HStack {
+                Text(listLine.number)
+                Text(listLine.name)
+                Text(String(format: "%.2f", listLine.amount))
+                }
+              }
+            
+        }
+        .onAppear {updateListReport()}
+         }
+    }
 }
-}
+
 
 
 
@@ -53,6 +86,6 @@ var body: some View {
 
 struct ReportTwo_Previews: PreviewProvider {
     static var previews: some View {
-        ReportTwo()
+        ReportTwo(accounts:.constant(Account.sampleData), postings: .constant(Posting.sampleData))
     }
 }

@@ -26,16 +26,21 @@ struct AccountDetail: View {
     }
     
     var body: some View {
-        List(filteredPostings) { posting in
-            NavigationLink {
-            } label: {
-                if (account.number == posting.firstAccount) {
-                    PostingDebitRow(posting: posting)
-                } else {
-                    PostingCreditRow(posting: posting)
+        List {
+            ForEach(filteredPostings) { posting in
+                NavigationLink {
+                } label: {
+                    if (account.number == posting.firstAccount) {
+                        PostingDebitRow(posting: posting)
+                    } else {
+                        PostingCreditRow(posting: posting)
+                    }
                 }
             }
+            .onDelete(perform: deletePosting)
+           
         }
+        
         .navigationTitle(account.number + " " + account.name)
         .toolbar {
             Button(action: {
@@ -43,7 +48,7 @@ struct AccountDetail: View {
             }) {
                 Image(systemName: "plus")
             }
-                }
+        }
         .sheet(isPresented: $isPresentingNewPostingView) {
             NavigationView  {
                 PostingEditRow( selectedAccount: $selectedAccount, data: $newPostingData, accounts: $accounts)
@@ -71,6 +76,10 @@ struct AccountDetail: View {
             }
         }
     }
+    func deletePosting( at offsets: IndexSet) {
+        postings.remove(atOffsets:offsets)
+    }
+    
 }
 
 //struct AccountDetail_Previews: PreviewProvider {

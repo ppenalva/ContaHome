@@ -33,7 +33,6 @@ struct AccountList: View {
         }
        
         .navigationTitle("Account")
-//        .toolbar { EditButton() }
         
         .toolbar {
             Button(action: {
