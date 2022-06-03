@@ -32,7 +32,7 @@ struct AccountList: View {
             .onDelete(perform: deleteAccount)
         }
        
-        .navigationTitle("Account")
+        .navigationTitle("ACCOUNTS")
         
         .toolbar {
             Button(action: {

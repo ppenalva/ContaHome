@@ -1,39 +1,40 @@
 //
-//  GroupEdit.swift
+//  ReportDetail.swift
 //  ContaHome
 //
-//  Created by Pablo Penalva on 4/5/22.
+//  Created by Pablo Penalva on 19/5/22.
 //
 
 import SwiftUI
 
-struct GroupDetail: View {
+struct ReportDetail: View {
     
-    @Binding var accountGroup: AccountGroup
+    @Binding var report: Report
+    @Binding var level1s: [Level1]
     
-    @State private var data = AccountGroup.Data()
+    @State private var data = Report.Data()
     @State private var isPresentingEditView = false
     
     var body: some View {
         Form {
         VStack {
-            Text(accountGroup.name)
-            ForEach (accountGroup.group) { account in
+            
+            ForEach (report.level1) { account in
                 Text(account.number)
             }
         }
         
-        .navigationTitle(accountGroup.name)
+        .navigationTitle(report.name)
         .toolbar {
             Button("Edit") {
                 isPresentingEditView = true
-                data = accountGroup.data
+                data = report.data
             }
         }
         .sheet(isPresented: $isPresentingEditView) {
             NavigationView {
-                GroupEdit(data: $data)
-                    .navigationTitle(accountGroup.name)
+                ReportEdit(data: $data, level1s: $level1s)
+                    .navigationTitle(report.name)
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
                             Button("Cancel") {
@@ -43,7 +44,7 @@ struct GroupDetail: View {
                         ToolbarItem(placement: .confirmationAction) {
                             Button("Done") {
                                 isPresentingEditView = false
-                                accountGroup.update(from: data)
+                                report.update(from: data)
                             }
                         }
                     }
@@ -56,10 +57,10 @@ struct GroupDetail: View {
 
 
 
-struct GroupDetail_Previews: PreviewProvider {
+struct ReportDetail_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            GroupDetail(accountGroup: .constant(AccountGroup.sampleData[0]))
+            ReportDetail(report: .constant(Report.sampleData[0]), level1s: .constant(Level1.sampleData))
         }
     }
 }

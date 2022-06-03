@@ -26,6 +26,8 @@ struct AccountDetail: View {
     }
     
     var body: some View {
+        
+        
         List {
             ForEach(filteredPostings) { posting in
                 NavigationLink {

@@ -17,12 +17,12 @@ struct AccountEdit: View {
 
 var body: some View {
     Form {
-        NavigationView {
+    
     VStack {
         TextField("Number", text: $data.number)
         TextField("Name", text: $data.name)
        
-        }
+        
     }
 
 }

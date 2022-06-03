@@ -11,9 +11,10 @@ struct ReportTwo: View {
     
     @Binding var accounts: [Account]
     @Binding var postings: [Posting]
+   
     
     @State var listLines = [ListReport]()
-    
+
     class ListReport: Identifiable {
         
         var number: String = ""
@@ -25,56 +26,58 @@ struct ReportTwo: View {
             self.name = name
             self.amount = amount
         }
-        
-      
     }
     
     func updateListReport() {
         
-       
         var totAmount: Double = 0.0
-        
-       
         
         for account in accounts {
             for posting in postings {
                 if posting.firstAccount == account.number {
                     totAmount += posting.debitAmount
                     totAmount -= posting.creditAmount
-                    
                 }
                 if posting.secondAccount == account.number {
                     totAmount -= posting.debitAmount
                     totAmount += posting.creditAmount
                 }
             }
-        
+            
             let listLine = ListReport( number:account.number, name:account.name, amount: totAmount)
             listLines.append(listLine)
             totAmount = 0.0
         }
     }
-   
+    
     
     var body: some View {
-        
-         VStack {
-            
-            Text("Balance Report")
-             
-             List {
-            ForEach (listLines) { listLine in
-
-                HStack {
-                Text(listLine.number)
-                Text(listLine.name)
-                Text(String(format: "%.2f", listLine.amount))
-                }
-              }
-            
-        }
-        .onAppear {updateListReport()}
-         }
+        Text("hello world")
+//        VStack {
+//
+//            Text("Balance Report")
+//
+//            List {
+//                ForEach (reports) { linea in
+//                    Text(linea.name)
+//                    ForEach (linea.group) { cuenta in
+//                    ForEach (listLines) { listLine in
+//                        if (cuenta.number == listLine.number) {
+//                            HStack {
+//                                Text(listLine.number)
+//                                Text(listLine.name)
+//                                Text(String(format: "%.2f", listLine.amount))
+//                       //         totGroup += listLine.amount
+//                            }
+//                        }
+//                    }
+//                    }
+//                    Text(linea.name)
+//              //  añadir totalizadores en AccountGroup 1 o 2
+//                }
+//            }
+//            .onAppear {updateListReport()}
+//        }
     }
 }
 
@@ -84,8 +87,8 @@ struct ReportTwo: View {
 
 
 
-struct ReportTwo_Previews: PreviewProvider {
-    static var previews: some View {
-        ReportTwo(accounts:.constant(Account.sampleData), postings: .constant(Posting.sampleData))
-    }
-}
+//struct ReportTwo_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ReportTwo(accounts:.constant(Account.sampleData), postings: .constant(Posting.sampleData), reports: .constant(Report.sampleData))
+//    }
+//}
