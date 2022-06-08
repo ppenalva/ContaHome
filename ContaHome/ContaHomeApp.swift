@@ -13,11 +13,7 @@ struct ContaHomeApp: App {
     
     @StateObject private var accountStore = AccountStore()
     @StateObject private var postingStore = PostingStore()
-    //   @StateObject private var accountGropStore = AccountGroupStore()
-    
-    @State private var level2s = Level2.sampleData
-    @State private var level1s = Level1.sampleData
-    @State private var reports = Report.sampleData
+    @StateObject private var balanceLineStore = BalanceLineStore()
     
     @State var menuChoice = "0"
     
@@ -65,23 +61,17 @@ struct ContaHomeApp: App {
             case "31":
                 
                
-                Level2List(level2s: $level2s, accounts: $accountStore.accounts)
+                BalanceLineList(balanceLines: $balanceLineStore.balanceLines, accounts: $accountStore.accounts)
                         
                 
                 
-            case "32":
-                Level1List(level1s: $level1s, level2s: $level2s)
-            case "33":
-                ReportList(reports: $reports, level1s: $level1s)
-                
+        
             
             case "41":
-                BalancePeticion(fechaInforme: Date(), accounts: $accountStore.accounts, postings: $postingStore.postings, reports:$reports, level1s:$level1s, level2s:$level2s)
+                BalancePeticion(fechaInforme: Date(), accounts: $accountStore.accounts, postings: $postingStore.postings, balanceLines:$balanceLineStore.balanceLines)
             
- //
- //               ReportTwo(accounts: $accountStore.accounts, postings: $postingStore.postings,reports: $reports)
             default:
-                ReportList(reports: $reports, level1s: $level1s)
+               EmptyView()
             }
         }
         
@@ -115,18 +105,9 @@ struct ContaHomeApp: App {
                     Button(action: {
                         menuChoice = "31"
                     }, label: {
-                        Text("Level 2")
+                        Text("Balance Line")
                     })
-                    Button(action: {
-                        menuChoice = "32"
-                    }, label: {
-                        Text("Level 1")
-                    })
-                    Button(action: {
-                        menuChoice = "33"
-                    }, label: {
-                        Text("Reports")
-                    })
+                    
                     
                 }
             }

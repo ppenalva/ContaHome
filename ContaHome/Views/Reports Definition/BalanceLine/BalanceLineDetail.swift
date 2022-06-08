@@ -1,40 +1,40 @@
 //
-//  Level2Detail.swift
+//  BalanceLineDetail.swift
 //  ContaHome
 //
-//  Created by Pablo Penalva on 23/5/22.
+//  Created by Pablo Penalva on 6/6/22.
 //
 
 import SwiftUI
 
-struct Level2Detail: View {
+struct BalanceLineDetail: View {
     
-    @Binding var level2: Level2
+    @Binding var balanceLine: BalanceLine
     @Binding var accounts: [Account]
     
-    @State private var data = Level2.Data()
+    @State private var data = BalanceLine.Data()
     @State private var isPresentingEditView = false
     
     var body: some View {
         Form {
             VStack {
                 
-                ForEach (level2.accounts) { account in
-                    Text(account.number)
+                ForEach (balanceLine.accounts) { account in
+                    Text(account.account)
                 }
             }
             
-            .navigationTitle(level2.name)
+            .navigationTitle(balanceLine.name)
             .toolbar {
                 Button("Edit") {
                     isPresentingEditView = true
-                    data = level2.data
+                    data = balanceLine.data
                 }
             }
             .sheet(isPresented: $isPresentingEditView) {
               
-                    Level2Edit(data: $data, accounts: $accounts)
-                        .navigationTitle(level2.name)
+                    BalanceLineEdit(data: $data, accounts: $accounts)
+                        .navigationTitle(balanceLine.name)
                         .toolbar {
                             ToolbarItem(placement: .cancellationAction) {
                                 Button("Cancel") {
@@ -44,7 +44,7 @@ struct Level2Detail: View {
                             ToolbarItem(placement: .confirmationAction) {
                                 Button("Done") {
                                     isPresentingEditView = false
-                                    level2.update(from: data)
+                                    balanceLine.update(from: data)
                                 }
                             }
                         }
@@ -57,10 +57,10 @@ struct Level2Detail: View {
 
 
 
-struct Level2Detail_Previews: PreviewProvider {
+struct BalanceLineDetail_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            Level2Detail(level2: .constant(Level2.sampleData[0]), accounts: .constant(Account.sampleData))
+            BalanceLineDetail(balanceLine: .constant(BalanceLine.sampleData[0]), accounts: .constant(Account.sampleData))
         }
     }
 }

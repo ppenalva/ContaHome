@@ -1,15 +1,15 @@
 //
-//  Level2Edit.swift
+//  BalanceLineEdit.swift
 //  ContaHome
 //
-//  Created by Pablo Penalva on 23/5/22.
+//  Created by Pablo Penalva on 6/6/22.
 //
 
 import SwiftUI
 
-struct Level2Edit: View {
+struct BalanceLineEdit: View {
     
-    @Binding var data: Level2.Data
+    @Binding var data: BalanceLine.Data
     @Binding var accounts: [Account]
     
     @State private var newAccounts = ""
@@ -17,11 +17,11 @@ struct Level2Edit: View {
     var body: some View {
         
         VStack {
-            TextField("Number", text: $data.number)
+//            TextField("Number", text: $data.number)
             TextField("Name", text: $data.name)
             List {
                 ForEach (data.accounts ) { accounts in
-                    Text(accounts.number)
+                    Text(accounts.account)
                 }
                 .onDelete(perform: delete)
             }
@@ -35,7 +35,7 @@ struct Level2Edit: View {
                 
                 Button(action: {
                     withAnimation {
-                        let accounts = Level2.AccountsInLevel2(number:newAccounts)
+                        let accounts = BalanceLine.AccountsInLine(account:newAccounts)
                         data.accounts.append(accounts)
                         newAccounts = ""
                     }
@@ -53,8 +53,8 @@ struct Level2Edit: View {
 }
 
 
-struct Level2Edit_Previews: PreviewProvider {
+struct BalanceLineEdit_Previews: PreviewProvider {
     static var previews: some View {
-        Level2Edit(data: .constant(Level2.sampleData[0].data), accounts: .constant(Account.sampleData))
+        BalanceLineEdit(data: .constant(BalanceLine.sampleData[0].data), accounts: .constant(Account.sampleData))
     }
 }
