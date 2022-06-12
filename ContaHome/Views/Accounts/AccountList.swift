@@ -10,18 +10,22 @@ import SwiftUI
 struct AccountList: View {
     @Binding var accounts: [Account]
     @Binding var postings: [Posting]
+    
     @Environment(\.scenePhase) private var scenePhase
     
-    @State  private var selectedAccount = Account(id: UUID(), number: "", name: "", type: "")
+    @State  private var selectedAccount = Account(id: UUID(), name: "")
     
     @State private var isPresentingNewAccount = false
     @State private var newAccountData = Account.Data()
+    
+    @State private var amount = 0.0
+    
     let saveAction: ()->Void
-   
+    
     
     
     var body: some View {
-        
+     
         List {
             ForEach($accounts) { $account in
                 NavigationLink(destination:
@@ -30,26 +34,26 @@ struct AccountList: View {
                 }
             }
             .onDelete(perform: deleteAccount)
+            .onMove(perform: moveAccount)
         }
-       
-        .navigationTitle("ACCOUNTS")
         
+    .navigationTitle("ACCOUNTS")
+    
         .toolbar {
             Button(action: {
                 isPresentingNewAccount = true
             }) {
                 Image(systemName: "plus")
             }
-            
+
             Button(action: {
                 saveAction()
             }) {
                 Image(systemName: "square.and.arrow.down")
             }
-            
         }
         .sheet(isPresented: $isPresentingNewAccount) {
-            NavigationView {
+
                 AccountEdit(data: $newAccountData)
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
@@ -67,11 +71,16 @@ struct AccountList: View {
                             }
                         }
                     }
-            }
+
         }
     }
+
+    
     func deleteAccount( at offsets: IndexSet) {
         accounts.remove(atOffsets:offsets)
+    }
+    func moveAccount( from source: IndexSet, to destination: Int) {
+        accounts.move(fromOffsets: source, toOffset: destination)
     }
 }
 
@@ -80,7 +89,7 @@ struct AccountList: View {
 struct AccountList_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            AccountList(accounts: .constant(Account.sampleData), postings: .constant(Posting.sampleData), saveAction: {})
+            AccountList(accounts: .constant(Account.sampleData), postings: .constant(Posting.sampleData),  saveAction: {})
         }
     }
 }

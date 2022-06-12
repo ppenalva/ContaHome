@@ -72,17 +72,17 @@ extension BalanceLine{
         
         BalanceLine(
             name: "La Caixa",
-            accounts: ["10101"]
+            accounts: ["Cuenta uno"]
         ),
         
         BalanceLine(
             name: "Banco de Sabadell",
-            accounts: ["10102"]
+            accounts: ["Cuenta dos"]
         ),
 
         BalanceLine(
             name: "Total Caja y Cuentas de Bancos",
-            accounts: ["10101","10102"]
+            accounts: ["Cuenta uno","Cuenta dos"]
         ),
         
         BalanceLine(
@@ -92,22 +92,22 @@ extension BalanceLine{
         
         BalanceLine(
             name: "Barca",
-            accounts: ["10201"]
+            accounts: ["Cuenta tres"]
         ),
         
         BalanceLine(
             name: "Piso Mallorca 164",
-            accounts: ["10202"]
+            accounts: ["Cuenta cuatro"]
         ),
         
         BalanceLine(
             name: "Total otros activos",
-            accounts: ["10201","10202"]
+            accounts: ["Cuenta tres","Cuenta cuatro"]
         ),
         
         BalanceLine(
             name: "TOTAL ACTIVOS",
-            accounts: ["10101","10102","10201","10202"]
+            accounts: ["Cuenta uno","Cuenta dos","Cuenta tres","Cuenta cuatro"]
         ),
         
         BalanceLine(
@@ -122,7 +122,7 @@ extension BalanceLine{
         
         BalanceLine(
             name: "Capital",
-            accounts: ["40101"]
+            accounts: ["Cuenta cinco"]
         )
     ]
 }

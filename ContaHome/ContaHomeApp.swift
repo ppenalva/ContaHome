@@ -7,6 +7,17 @@
 
 import SwiftUI
 
+extension String{
+    // Get the filename from the String
+    func fileName() -> String {
+        return URL(fileURLWithPath: self).deletingPathExtension().lastPathComponent
+    }
+    // Get the file extension from String
+    func fileExtension() -> String {
+        return URL(fileURLWithPath: self).pathExtension
+    }
+}
+
 @main
 
 struct ContaHomeApp: App {
@@ -24,7 +35,7 @@ struct ContaHomeApp: App {
             case "0":
                 NavigationView {
                     
-                    AccountList(accounts: $accountStore.accounts, postings: $postingStore.postings) {
+                    AccountList(accounts: $accountStore.accounts, postings: $postingStore.postings ) {
                         AccountStore.save(accounts: accountStore.accounts) { result in
                             if case .failure(let error) = result {
                                 fatalError(error.localizedDescription)
@@ -54,24 +65,82 @@ struct ContaHomeApp: App {
                             postingStore.postings = postings
                         }
                     }
+                    
                 }
                 
-           
+                
                 
             case "31":
                 
-               
-                BalanceLineList(balanceLines: $balanceLineStore.balanceLines, accounts: $accountStore.accounts)
-                        
+                NavigationView {
+                    
+                    
+                    BalanceLineList(balanceLines: $balanceLineStore.balanceLines, accounts: $accountStore.accounts) {
+                        BalanceLineStore.save(balanceLines: balanceLineStore.balanceLines) { result in
+                            if case .failure(let error) = result {
+                                fatalError(error.localizedDescription)
+                            }
+                        }
+                    }
+                }
+                .onAppear {
+                    BalanceLineStore.load { result in
+                        switch result {
+                        case .failure(let error):
+                            fatalError(error.localizedDescription)
+                        case .success(let balanceLines):
+                            balanceLineStore.balanceLines = balanceLines
+                        }
+                    }
+                }
                 
-                
-        
-            
             case "41":
                 BalancePeticion(fechaInforme: Date(), accounts: $accountStore.accounts, postings: $postingStore.postings, balanceLines:$balanceLineStore.balanceLines)
-            
+            case "51":
+                NavigationView {
+                    PostingUpLoadPetition(accounts: $accountStore.accounts, postings: $postingStore.postings) {
+                        PostingStore.save(postings: postingStore.postings) { result in
+                            if case .failure(let error) = result {
+                                fatalError(error.localizedDescription)
+                            }
+                        }
+                    }
+                }
+                .onAppear {
+                    PostingStore.load { result in
+                        switch result {
+                        case .failure(let error):
+                            fatalError(error.localizedDescription)
+                        case .success(let postings):
+                            postingStore.postings = postings
+                        }
+                    }
+                }
+           
+            case "52":
+                NavigationView {
+                    PostingDeletePetition(accounts: $accountStore.accounts, postings: $postingStore.postings) {
+                        PostingStore.save(postings: postingStore.postings) { result in
+                            if case .failure(let error) = result {
+                                fatalError(error.localizedDescription)
+                            }
+                        }
+                    }
+                }
+                .onAppear {
+                    PostingStore.load { result in
+                        switch result {
+                        case .failure(let error):
+                            fatalError(error.localizedDescription)
+                        case .success(let postings):
+                            postingStore.postings = postings
+                        }
+                    }
+                }
+                
+                
             default:
-               EmptyView()
+                EmptyView()
             }
         }
         
@@ -108,6 +177,24 @@ struct ContaHomeApp: App {
                         Text("Balance Line")
                     })
                     
+                    
+                }
+            }
+            CommandMenu("Utilities") {
+                
+                Menu("CVS upload") {
+                    
+                    Button(action: {
+                        menuChoice = "51"
+                    }, label: {
+                        Text("UpLoad Postings")
+                    })
+                    
+                    Button(action: {
+                        menuChoice = "52"
+                    }, label: {
+                        Text("Delete Postings")
+                    })
                     
                 }
             }

@@ -23,12 +23,13 @@ struct PostingCreditRow: View {
                 Text(posting.date, formatter: PostingDebitRow.taskDateFormat)
                 Text(posting.description)
                 Spacer()
+                
                 Text(String(format: "%.2f", posting.creditAmount))
                 Text(String(format: "%.2f", posting.debitAmount))
             }
+            
             HStack {
-                Text(posting.firstAccount)
-                Text(posting.firstAccountName)
+                Text(posting.secondAccount)
                 Spacer()
             }
         }

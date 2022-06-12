@@ -15,35 +15,34 @@ struct AccountDetail: View {
     @Binding var accounts: [Account]
     @Binding var selectedAccount: Account
     
-    
     @State private var isPresentingNewPostingView = false
+    
     @State private var newPostingData = Posting.Data()
+    @State private var selectedPostingData = Posting.Data()
     
     var filteredPostings: [Posting] {
         postings.filter { posting in
-            (posting.firstAccount == account.number || posting.secondAccount == account.number)
+            (posting.firstAccount == account.name || posting.secondAccount == account.name)
         }
     }
     
     var body: some View {
-        
-        
-        List {
-            ForEach(filteredPostings) { posting in
-                NavigationLink {
-                } label: {
-                    if (account.number == posting.firstAccount) {
-                        PostingDebitRow(posting: posting)
+            
+            List {
+                
+                ForEach(filteredPostings) { filteredPosting in
+                    
+                    if (account.name == filteredPosting.firstAccount) {
+                        PostingDebitRow(posting: filteredPosting)
                     } else {
-                        PostingCreditRow(posting: posting)
+                        PostingCreditRow(posting: filteredPosting)
                     }
                 }
             }
-            .onDelete(perform: deletePosting)
-           
-        }
+
         
-        .navigationTitle(account.number + " " + account.name)
+        
+        .navigationTitle(account.name)
         .toolbar {
             Button(action: {
                 isPresentingNewPostingView = true
@@ -53,7 +52,7 @@ struct AccountDetail: View {
         }
         .sheet(isPresented: $isPresentingNewPostingView) {
             NavigationView  {
-                PostingEditRow( selectedAccount: $selectedAccount, data: $newPostingData, accounts: $accounts)
+                PostingNewRow( data: $newPostingData, accounts: $accounts)
                 
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
@@ -65,23 +64,20 @@ struct AccountDetail: View {
                         ToolbarItem(placement: .confirmationAction) {
                             Button("Add") {
                                 var newPosting = Posting(data: newPostingData)
-                                newPosting.firstAccount = account.number
-                                newPosting.firstAccountName = account.name
-                                newPosting.secondAccount = selectedAccount.number
-                                newPosting.secondAccountName = selectedAccount.name
+                                newPosting.firstAccount = account.name
                                 postings.append(newPosting)
                                 isPresentingNewPostingView = false
                                 newPostingData = Posting.Data()
                             }
                         }
                     }
+                
+                
+                
             }
         }
+        
     }
-    func deletePosting( at offsets: IndexSet) {
-        postings.remove(atOffsets:offsets)
-    }
-    
 }
 
 //struct AccountDetail_Previews: PreviewProvider {

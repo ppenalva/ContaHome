@@ -12,10 +12,9 @@ struct AccountRow: View {
     
     var body: some View {
         HStack {
-            Text(account.number)
-            Spacer()
             Text(account.name)
         }
+        .frame(width: 200, height: 15, alignment: .leading)
     }
 }
 

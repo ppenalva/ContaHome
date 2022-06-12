@@ -30,7 +30,7 @@ struct BalanceLineEdit: View {
                 
                 Picker("Account", selection: $newAccounts) {
                     ForEach(self.accounts, id: \.self) {account in
-                        Text(account.number + " " + account.name).tag(account.number)                            }
+                        Text(account.name).tag(account.name)                            }
                 }
                 
                 Button(action: {

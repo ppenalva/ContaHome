@@ -68,16 +68,14 @@ struct BalanceExecution: View {
             }
             
             let importe1 = postings.filter({($0.date <= fechaInforme) && (accountArray.contains( where: $0.firstAccount.contains))}).map{$0.debitAmount}.reduce(0, +)
-            
+        
             let importe2 = postings.filter({($0.date <= fechaInforme) && (accountArray.contains( where: $0.firstAccount.contains))}).map{$0.creditAmount}.reduce(0, +)
             
-            let importe3 = postings.filter({($0.date <= fechaInforme) && (accountArray.contains( where: $0.secondAccount.contains))}).map{$0.debitAmount}.reduce(0, +)
+            let importe3 = postings.filter({($0.date <= fechaInforme) && (accountArray.contains( where: $0.secondAccount.contains))}).map{$0.creditAmount}.reduce(0, +)
             
-            let importe4 = postings.filter({($0.date <= fechaInforme) && (accountArray.contains( where: $0.secondAccount.contains))}).map{$0.creditAmount}.reduce(0, +)
+            let importe4 = postings.filter({($0.date <= fechaInforme) && (accountArray.contains( where: $0.secondAccount.contains))}).map{$0.debitAmount}.reduce(0, +)
             
-            let importe = importe1 - importe2 - importe3 + importe4
-            
-            
+            let importe = importe1 - importe2 + importe3 - importe4
             
             return importe
         }

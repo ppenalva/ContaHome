@@ -12,12 +12,16 @@ struct BalanceLineList: View {
     @Binding var balanceLines: [BalanceLine]
     @Binding var accounts: [Account]
     
+    @Environment(\.scenePhase) private var scenePhase
+    
     
     @State private var isPresentingNewBalanceLine = false
     @State private var newBalanceLineData = BalanceLine.Data()
     
+    let saveAction: ()->Void
+    
     var body: some View {
-        NavigationView {
+    
             List {
                 ForEach($balanceLines) { $balanceLine in
                     NavigationLink(destination: BalanceLineDetail(balanceLine: $balanceLine, accounts: $accounts)) {
@@ -27,11 +31,17 @@ struct BalanceLineList: View {
                 .onDelete(perform: deleteBalanceLine)
             }
             .navigationTitle("BALANCE LINES")
+            
             .toolbar {
                 Button(action: {
                     isPresentingNewBalanceLine = true
                 }) {
                     Image(systemName: "plus")
+                }
+                Button(action: {
+                    saveAction()
+                }) {
+                    Image(systemName: "square.and.arrow.down")
                 }
             }
             .sheet(isPresented: $isPresentingNewBalanceLine) {
@@ -56,7 +66,7 @@ struct BalanceLineList: View {
                 }
             }
         }
-    }
+    
     func deleteBalanceLine( at offsets: IndexSet) {
         balanceLines.remove(atOffsets:offsets)
     }
@@ -64,7 +74,7 @@ struct BalanceLineList: View {
 
 struct BalanecLineList_Previews: PreviewProvider {
     static var previews: some View {
-        BalanceLineList(balanceLines: .constant(BalanceLine.sampleData), accounts: .constant(Account.sampleData))
+        BalanceLineList(balanceLines: .constant(BalanceLine.sampleData), accounts: .constant(Account.sampleData), saveAction: {})
     }
 }
 
