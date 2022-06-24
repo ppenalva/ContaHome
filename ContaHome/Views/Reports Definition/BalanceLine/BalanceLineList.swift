@@ -29,6 +29,7 @@ struct BalanceLineList: View {
                     }
                 }
                 .onDelete(perform: deleteBalanceLine)
+                .onMove(perform: moveBalanceLine)
             }
             .navigationTitle("BALANCE LINES")
             
@@ -70,9 +71,12 @@ struct BalanceLineList: View {
     func deleteBalanceLine( at offsets: IndexSet) {
         balanceLines.remove(atOffsets:offsets)
     }
+    func moveBalanceLine( from source: IndexSet, to destination: Int) {
+    balanceLines.move(fromOffsets: source, toOffset: destination)
+    }
 }
 
-struct BalanecLineList_Previews: PreviewProvider {
+struct BalanceLineList_Previews: PreviewProvider {
     static var previews: some View {
         BalanceLineList(balanceLines: .constant(BalanceLine.sampleData), accounts: .constant(Account.sampleData), saveAction: {})
     }

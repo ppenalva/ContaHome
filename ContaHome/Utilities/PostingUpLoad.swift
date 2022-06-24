@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct PostingUpLoadPetition: View {
+struct PostingUpLoad: View {
     
     @State var buttonPressed = false
     
     @State private var newPostingData = Posting.Data()
-    
+
     
     @Binding var accounts: [Account]
     @Binding var postings: [Posting]
@@ -46,21 +46,38 @@ struct PostingUpLoadPetition: View {
                 
                 Button("Execute") {
                     
-                    let myData = readCSV(inputFile: "pp02.csv", separator: "\r\n")
+                    let myData = readCSV(inputFile: "pp04.csv", separator: "\r\n")
                     
                     for item in myData {
+                        
                         
                         let columns = item.components(separatedBy: ";")
                         
                         var newPosting = Posting(data: newPostingData)
-                        newPosting.firstAccount = columns[0]
-                        newPosting.secondAccount = columns[1]
-                        newPosting.debitAmount = (columns[2] as NSString).doubleValue
-                        let dateFormatter = DateFormatter()
-                        dateFormatter.dateFormat = "YYYY/MM/dd"
-                        newPosting.date = dateFormatter.date(from:columns[3]) ?? Date()
-                        newPosting.description = columns[4]
                         
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "MM/dd/yy"
+                        newPosting.date = dateFormatter.date(from:columns[0]) ?? Date()
+                        
+                        newPosting.firstAccount = columns[1]
+                        
+                        newPosting.description = columns[2]
+                        
+                        newPosting.secondAccount = columns[3]
+                        
+                        let valor = (Double(columns[4]) ?? 0.0)
+                        
+                        if (valor > 0.0) {
+                            newPosting.debitAmount = valor
+                            newPosting.creditAmount = 0.0
+                        } else {
+                            newPosting.creditAmount = (valor  * -1)
+                            newPosting.debitAmount = 0.0
+                        }
+                            
+                        
+                
+                
                         postings.append(newPosting)
                         
                         newPostingData = Posting.Data()

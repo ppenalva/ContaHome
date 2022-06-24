@@ -20,7 +20,7 @@ struct AccountDetail: View {
     @State private var newPostingData = Posting.Data()
     @State private var selectedPostingData = Posting.Data()
     
-    var filteredPostings: [Posting] {
+    private var filteredPostings: [Posting] {
         postings.filter { posting in
             (posting.firstAccount == account.name || posting.secondAccount == account.name)
         }
@@ -38,6 +38,7 @@ struct AccountDetail: View {
                         PostingCreditRow(posting: filteredPosting)
                     }
                 }
+                .onDelete(perform: removePosting)
             }
 
         
@@ -77,6 +78,13 @@ struct AccountDetail: View {
             }
         }
         
+    }
+    func removePosting(at offsets: IndexSet) {
+        for offset in offsets {
+            if let index = postings.firstIndex(of: filteredPostings[offset]) {
+                postings.remove(at: index)
+            }
+        }
     }
 }
 

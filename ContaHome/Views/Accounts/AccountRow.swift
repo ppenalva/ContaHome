@@ -11,9 +11,9 @@ struct AccountRow: View {
     var account: Account
     
     var body: some View {
-        HStack {
+        
             Text(account.name)
-        }
+
         .frame(width: 200, height: 15, alignment: .leading)
     }
 }

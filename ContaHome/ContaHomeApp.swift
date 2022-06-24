@@ -8,6 +8,11 @@
 import SwiftUI
 
 extension String{
+    
+       var fileExists: Bool {
+          return FileManager().fileExists(atPath: self)
+       }
+    
     // Get the filename from the String
     func fileName() -> String {
         return URL(fileURLWithPath: self).deletingPathExtension().lastPathComponent
@@ -25,6 +30,7 @@ struct ContaHomeApp: App {
     @StateObject private var accountStore = AccountStore()
     @StateObject private var postingStore = PostingStore()
     @StateObject private var balanceLineStore = BalanceLineStore()
+    @StateObject private var pAndLLineStore = PAndLLineStore()
     
     @State var menuChoice = "0"
     
@@ -94,11 +100,40 @@ struct ContaHomeApp: App {
                     }
                 }
                 
+            case "32":
+                
+                NavigationView {
+                    
+                    
+                    PAndLLineList(pAndLLines: $pAndLLineStore.pAndLLines, accounts: $accountStore.accounts) {
+                        PAndLLineStore.save(pAndLLines: pAndLLineStore.pAndLLines) { result in
+                            if case .failure(let error) = result {
+                                fatalError(error.localizedDescription)
+                            }
+                        }
+                    }
+                }
+                .onAppear {
+                    PAndLLineStore.load { result in
+                        switch result {
+                        case .failure(let error):
+                            fatalError(error.localizedDescription)
+                        case .success(let pAndLLines):
+                            pAndLLineStore.pAndLLines = pAndLLines
+                        }
+                    }
+                }
+                
             case "41":
-                BalancePeticion(fechaInforme: Date(), accounts: $accountStore.accounts, postings: $postingStore.postings, balanceLines:$balanceLineStore.balanceLines)
+                BalancePeticion(accounts: $accountStore.accounts, postings: $postingStore.postings, balanceLines:$balanceLineStore.balanceLines)
+                
+            case "42":
+                PAndLPeticion( accounts: $accountStore.accounts, postings: $postingStore.postings, pAndLLines:$pAndLLineStore.pAndLLines)
+         
+                
             case "51":
                 NavigationView {
-                    PostingUpLoadPetition(accounts: $accountStore.accounts, postings: $postingStore.postings) {
+                    PostingUpLoad(accounts: $accountStore.accounts, postings: $postingStore.postings) {
                         PostingStore.save(postings: postingStore.postings) { result in
                             if case .failure(let error) = result {
                                 fatalError(error.localizedDescription)
@@ -119,7 +154,7 @@ struct ContaHomeApp: App {
            
             case "52":
                 NavigationView {
-                    PostingDeletePetition(accounts: $accountStore.accounts, postings: $postingStore.postings) {
+                    PostingDelete(accounts: $accountStore.accounts, postings: $postingStore.postings) {
                         PostingStore.save(postings: postingStore.postings) { result in
                             if case .failure(let error) = result {
                                 fatalError(error.localizedDescription)
@@ -136,6 +171,11 @@ struct ContaHomeApp: App {
                             postingStore.postings = postings
                         }
                     }
+                }
+            
+            case "53":
+                NavigationView {
+                    SecurityCopy()
                 }
                 
                 
@@ -177,6 +217,11 @@ struct ContaHomeApp: App {
                         Text("Balance Line")
                     })
                     
+                    Button(action: {
+                        menuChoice = "32"
+                    }, label: {
+                        Text("Profit And Loss Line")
+                    })
                     
                 }
             }
@@ -195,6 +240,13 @@ struct ContaHomeApp: App {
                     }, label: {
                         Text("Delete Postings")
                     })
+                    
+                    Button(action: {
+                        menuChoice = "53"
+                    }, label: {
+                        Text("Security Copy")
+                    })
+                    
                     
                 }
             }

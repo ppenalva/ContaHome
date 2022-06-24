@@ -1,15 +1,15 @@
 //
-//  BalanceLineEdit.swift
+//  P&LLineEdit.swift
 //  ContaHome
 //
-//  Created by Pablo Penalva on 6/6/22.
+//  Created by Pablo Penalva on 13/6/22.
 //
 
 import SwiftUI
 
-struct BalanceLineEdit: View {
+struct PAndLLineEdit: View {
     
-    @Binding var data: BalanceLine.Data
+    @Binding var data: PAndLLine.Data
     @Binding var accounts: [Account]
     
     @State private var newAccounts = ""
@@ -35,7 +35,7 @@ struct BalanceLineEdit: View {
                 
                 Button(action: {
                     withAnimation {
-                        let accounts = BalanceLine.AccountsInLine(account:newAccounts)
+                        let accounts = PAndLLine.AccountsInLine(account:newAccounts)
                         data.accounts.append(accounts)
                         newAccounts = ""
                     }
@@ -53,8 +53,8 @@ struct BalanceLineEdit: View {
 }
 
 
-struct BalanceLineEdit_Previews: PreviewProvider {
+struct PAndLLineEdit_Previews: PreviewProvider {
     static var previews: some View {
-        BalanceLineEdit(data: .constant(BalanceLine.sampleData[0].data), accounts: .constant(Account.sampleData))
+        PAndLLineEdit(data: .constant(PAndLLine.sampleData[0].data), accounts: .constant(Account.sampleData))
     }
 }

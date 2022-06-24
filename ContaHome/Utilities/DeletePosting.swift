@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PostingDeletePetition: View {
+struct PostingDelete: View {
     
     @State var buttonPressed = false
     
