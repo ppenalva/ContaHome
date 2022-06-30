@@ -18,8 +18,6 @@ struct BalanceLineList: View {
     @State private var isPresentingNewBalanceLine = false
     @State private var newBalanceLineData = BalanceLine.Data()
     
-    let saveAction: ()->Void
-    
     var body: some View {
     
             List {
@@ -38,11 +36,6 @@ struct BalanceLineList: View {
                     isPresentingNewBalanceLine = true
                 }) {
                     Image(systemName: "plus")
-                }
-                Button(action: {
-                    saveAction()
-                }) {
-                    Image(systemName: "square.and.arrow.down")
                 }
             }
             .sheet(isPresented: $isPresentingNewBalanceLine) {
@@ -78,7 +71,7 @@ struct BalanceLineList: View {
 
 struct BalanceLineList_Previews: PreviewProvider {
     static var previews: some View {
-        BalanceLineList(balanceLines: .constant(BalanceLine.sampleData), accounts: .constant(Account.sampleData), saveAction: {})
+        BalanceLineList(balanceLines: .constant(BalanceLine.sampleData), accounts: .constant(Account.sampleData))
     }
 }
 

@@ -41,19 +41,8 @@ struct ContaHomeApp: App {
             case "0":
                 NavigationView {
                     
-                    AccountList(accounts: $accountStore.accounts, postings: $postingStore.postings ) {
-                        AccountStore.save(accounts: accountStore.accounts) { result in
-                            if case .failure(let error) = result {
-                                fatalError(error.localizedDescription)
-                            }
-                        }
-                        PostingStore.save(postings: postingStore.postings) { result in
-                            if case .failure(let error) = result {
-                                fatalError(error.localizedDescription)
-                            }
-                        }
-                    }
-                }
+                    AccountList(accounts: $accountStore.accounts, postings: $postingStore.postings )
+                
                 .onAppear {
                     AccountStore.load { result in
                         switch result {
@@ -73,22 +62,26 @@ struct ContaHomeApp: App {
                     }
                     
                 }
-                
-                
-                
+                .onDisappear {
+                    AccountStore.save(accounts: accountStore.accounts) { result in
+                        if case .failure(let error) = result {
+                            fatalError(error.localizedDescription)
+                        }
+                    }
+                    PostingStore.save(postings: postingStore.postings) { result in
+                        if case .failure(let error) = result {
+                            fatalError(error.localizedDescription)
+                        }
+                    }
+                }
+                }
             case "31":
                 
                 NavigationView {
                     
                     
-                    BalanceLineList(balanceLines: $balanceLineStore.balanceLines, accounts: $accountStore.accounts) {
-                        BalanceLineStore.save(balanceLines: balanceLineStore.balanceLines) { result in
-                            if case .failure(let error) = result {
-                                fatalError(error.localizedDescription)
-                            }
-                        }
-                    }
-                }
+                    BalanceLineList(balanceLines: $balanceLineStore.balanceLines, accounts: $accountStore.accounts)
+                
                 .onAppear {
                     BalanceLineStore.load { result in
                         switch result {
@@ -99,20 +92,23 @@ struct ContaHomeApp: App {
                         }
                     }
                 }
+                .onDisappear {
+                    BalanceLineStore.save(balanceLines: balanceLineStore.balanceLines) { result in
+                        if case .failure(let error) = result {
+                            fatalError(error.localizedDescription)
+                        }
+                    }
+                    
+                }
+                }
                 
             case "32":
                 
                 NavigationView {
                     
                     
-                    PAndLLineList(pAndLLines: $pAndLLineStore.pAndLLines, accounts: $accountStore.accounts) {
-                        PAndLLineStore.save(pAndLLines: pAndLLineStore.pAndLLines) { result in
-                            if case .failure(let error) = result {
-                                fatalError(error.localizedDescription)
-                            }
-                        }
-                    }
-                }
+                    PAndLLineList(pAndLLines: $pAndLLineStore.pAndLLines, accounts: $accountStore.accounts) 
+                
                 .onAppear {
                     PAndLLineStore.load { result in
                         switch result {
@@ -123,7 +119,14 @@ struct ContaHomeApp: App {
                         }
                     }
                 }
-                
+                .onDisappear {
+                    PAndLLineStore.save(pAndLLines: pAndLLineStore.pAndLLines) { result in
+                        if case .failure(let error) = result {
+                            fatalError(error.localizedDescription)
+                        }
+                    }
+                }
+                }
             case "41":
                 BalancePeticion(accounts: $accountStore.accounts, postings: $postingStore.postings, balanceLines:$balanceLineStore.balanceLines)
                 
@@ -140,7 +143,7 @@ struct ContaHomeApp: App {
                             }
                         }
                     }
-                }
+                
                 .onAppear {
                     PostingStore.load { result in
                         switch result {
@@ -151,7 +154,7 @@ struct ContaHomeApp: App {
                         }
                     }
                 }
-           
+                }
             case "52":
                 NavigationView {
                     PostingDelete(accounts: $accountStore.accounts, postings: $postingStore.postings) {
@@ -161,7 +164,7 @@ struct ContaHomeApp: App {
                             }
                         }
                     }
-                }
+                
                 .onAppear {
                     PostingStore.load { result in
                         switch result {
@@ -172,7 +175,7 @@ struct ContaHomeApp: App {
                         }
                     }
                 }
-            
+                }
             case "53":
                 NavigationView {
                     SecurityCopy()

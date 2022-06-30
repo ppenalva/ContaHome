@@ -19,6 +19,7 @@ struct Posting: Hashable, Codable, Identifiable {
     var secondAccount: String
     var debitAmount: Double
     var creditAmount: Double
+    var cpuDate: Date
     
     init(
         id: UUID = UUID(),
@@ -27,7 +28,8 @@ struct Posting: Hashable, Codable, Identifiable {
         firstAccount: String,
         secondAccount: String,
         debitAmount: Double,
-        creditAmount: Double
+        creditAmount: Double,
+        cpuDate: Date
 
     ) {
         self.id = id
@@ -37,6 +39,7 @@ struct Posting: Hashable, Codable, Identifiable {
         self.secondAccount = secondAccount
         self.debitAmount = debitAmount
         self.creditAmount = creditAmount
+        self.cpuDate = cpuDate
     }
     
 }
@@ -46,12 +49,13 @@ extension Posting {
     
     
     struct Data {
-        var date: Date = dateFormatter.date(from: "2000-01-01") ?? Date()
+        var date: Date = dateFormatter.date(from: "2000-01-01") ?? Date.now
         var description: String = " "
         var firstAccount: String = " "
         var secondAccount: String = " "
         var debitAmount: Double = 0.00
         var creditAmount: Double = 0.00
+        var cpuDate: Date = Date()
     }
     
     var data: Data { Data(
@@ -60,7 +64,8 @@ extension Posting {
         firstAccount: firstAccount,
         secondAccount: secondAccount,
         debitAmount: debitAmount,
-        creditAmount: creditAmount
+        creditAmount: creditAmount,
+        cpuDate: cpuDate
        )
     }
     
@@ -71,6 +76,7 @@ extension Posting {
         secondAccount = data.secondAccount
         debitAmount = data.debitAmount
         creditAmount = data.creditAmount
+        cpuDate = data.cpuDate
     }
     
     
@@ -82,6 +88,7 @@ extension Posting {
         secondAccount = data.secondAccount
         debitAmount = data.debitAmount
         creditAmount = data.creditAmount
+        cpuDate = data.cpuDate
     }
 }
 
@@ -97,7 +104,8 @@ extension Posting {
             firstAccount: "Cuenta Primera",
             secondAccount: "Cuenta Segunda",
             debitAmount: 1000.00,
-            creditAmount: 0.0
+            creditAmount: 0.0,
+            cpuDate: Date()
         ),
         Posting(
             date: dateFormatter.date(from:"2022-04-27") ?? Date(),
@@ -105,7 +113,8 @@ extension Posting {
             firstAccount: "Cuenta Primera",
             secondAccount: "Cuenta Tercera",
             debitAmount: 1000.00,
-            creditAmount: 0.0
+            creditAmount: 0.0,
+            cpuDate: Date()
         ),
         Posting(
             date: dateFormatter.date(from:"2022-04-27") ?? Date(),
@@ -113,7 +122,8 @@ extension Posting {
             firstAccount: "Cuenta Segunda",
             secondAccount: "Cuenta Tercera",
             debitAmount: 1000.00,
-            creditAmount: 0.0
+            creditAmount: 0.0,
+            cpuDate: Date()
         )
         
     ]

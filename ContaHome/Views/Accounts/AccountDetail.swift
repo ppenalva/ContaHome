@@ -16,6 +16,8 @@ struct AccountDetail: View {
     @Binding var selectedAccount: Account
     
     @State private var isPresentingNewPostingView = false
+    @State private var isPresentingEditPostingView = false
+    
     
     @State private var newPostingData = Posting.Data()
     @State private var selectedPostingData = Posting.Data()
@@ -27,20 +29,20 @@ struct AccountDetail: View {
     }
     
     var body: some View {
+        
+        List {
             
-            List {
+            ForEach(filteredPostings) { filteredPosting in
                 
-                ForEach(filteredPostings) { filteredPosting in
-                    
-                    if (account.name == filteredPosting.firstAccount) {
-                        PostingDebitRow(posting: filteredPosting)
-                    } else {
-                        PostingCreditRow(posting: filteredPosting)
-                    }
+                if (account.name == filteredPosting.firstAccount) {
+                    PostingDebitRow(posting: filteredPosting)
+                } else {
+                    PostingCreditRow(posting: filteredPosting)
                 }
-                .onDelete(perform: removePosting)
             }
-
+            .onDelete(perform: removePosting)
+        }
+        
         
         
         .navigationTitle(account.name)
@@ -50,10 +52,11 @@ struct AccountDetail: View {
             }) {
                 Image(systemName: "plus")
             }
+            
         }
         .sheet(isPresented: $isPresentingNewPostingView) {
             NavigationView  {
-                PostingNewRow( data: $newPostingData, accounts: $accounts)
+                PostingNewRow( data: $newPostingData, accounts: $accounts, postings: $postings, account: $account)
                 
                     .toolbar {
                         ToolbarItem(placement: .cancellationAction) {
@@ -66,15 +69,18 @@ struct AccountDetail: View {
                             Button("Add") {
                                 var newPosting = Posting(data: newPostingData)
                                 newPosting.firstAccount = account.name
+                                newPosting.cpuDate = Date.now
                                 postings.append(newPosting)
                                 isPresentingNewPostingView = false
-                                newPostingData = Posting.Data()
+                                //                            newPostingData = Posting.Data()
+                                newPostingData.description = ""
+                                newPostingData.debitAmount = 0.0
+                                newPostingData.creditAmount = 0.0
+                                newPostingData.firstAccount = ""
+                                newPostingData.secondAccount = ""
                             }
                         }
                     }
-                
-                
-                
             }
         }
         

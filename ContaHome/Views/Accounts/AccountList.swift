@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AccountList: View {
+    
     @Binding var accounts: [Account]
     @Binding var postings: [Posting]
     
@@ -16,13 +17,10 @@ struct AccountList: View {
     @State  private var selectedAccount = Account(id: UUID(), name: "")
     
     @State private var isPresentingNewAccount = false
+   
     @State private var newAccountData = Account.Data()
     
-    @State private var amount = 0.0
-    
-    let saveAction: ()->Void
-    
-    
+  //  @State private var amount = 0.0
     
     var body: some View {
      
@@ -45,12 +43,6 @@ struct AccountList: View {
             }) {
                 Image(systemName: "plus")
             }
-
-            Button(action: {
-                saveAction()
-            }) {
-                Image(systemName: "square.and.arrow.down")
-            }
         }
         .sheet(isPresented: $isPresentingNewAccount) {
 
@@ -71,8 +63,13 @@ struct AccountList: View {
                             }
                         }
                     }
-
         }
+        
+        
+        
+        
+        
+        
     }
 
     
@@ -89,7 +86,7 @@ struct AccountList: View {
 struct AccountList_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            AccountList(accounts: .constant(Account.sampleData), postings: .constant(Posting.sampleData),  saveAction: {})
+            AccountList(accounts: .constant(Account.sampleData), postings: .constant(Posting.sampleData))
         }
     }
 }

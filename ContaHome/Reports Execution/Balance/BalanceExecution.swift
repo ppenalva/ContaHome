@@ -27,8 +27,8 @@ struct BalanceExecution: View {
         let pi = NSPrintInfo.shared
         pi.topMargin = 0.0
         pi.bottomMargin = 0.0
-        pi.leftMargin = 0.0
-        pi.rightMargin = 0.0
+        pi.leftMargin = 20.0
+        pi.rightMargin = 20.0
         pi.orientation = .portrait
         pi.isHorizontallyCentered = false
         pi.isVerticallyCentered = false
@@ -36,7 +36,7 @@ struct BalanceExecution: View {
         
         let rootView = Print_Preview(accounts: $accounts, postings: $postings, balanceLines: $balanceLines, fechaInforme: $fechaInforme)
         let view = NSHostingView(rootView: rootView)
-        view.frame.size = CGSize(width: 500, height: 500)
+        view.frame.size = CGSize(width: 500, height: 600)
         let po = NSPrintOperation(view: view, printInfo: pi)
         po.printInfo.orientation = .portrait
         po.showsPrintPanel = true
@@ -83,12 +83,18 @@ struct BalanceExecution: View {
         
         var body: some View {
             
-            VStack {
-                Text ("Balance Sheet")
-                Text (" As of \(fechaInforme)")
-                
-            }
-            
+            Form {
+                Spacer()
+                HStack {
+                Spacer()
+                Text( "BALANCE")
+                Spacer()
+                }
+                HStack {
+                Spacer()
+                    Text ("As of \(fechaInforme, style: .date)")
+                Spacer()
+                }
             ForEach (balanceLines) { linea  in
                 if linea.accounts.count == 0 {
                     
@@ -109,4 +115,5 @@ struct BalanceExecution: View {
             }
         }
     }
+}
 }

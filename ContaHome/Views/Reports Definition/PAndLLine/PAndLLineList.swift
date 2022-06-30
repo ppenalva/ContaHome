@@ -18,8 +18,6 @@ struct PAndLLineList: View {
     @State private var isPresentingNewPAndLLine = false
     @State private var newPAndLLineData = PAndLLine.Data()
     
-    let saveAction: ()->Void
-    
     var body: some View {
     
             List {
@@ -38,11 +36,6 @@ struct PAndLLineList: View {
                     isPresentingNewPAndLLine = true
                 }) {
                     Image(systemName: "plus")
-                }
-                Button(action: {
-                    saveAction()
-                }) {
-                    Image(systemName: "square.and.arrow.down")
                 }
             }
             .sheet(isPresented: $isPresentingNewPAndLLine) {
@@ -78,7 +71,7 @@ struct PAndLLineList: View {
 
 struct PAndLLineList_Previews: PreviewProvider {
     static var previews: some View {
-        PAndLLineList(pAndLLines: .constant(PAndLLine.sampleData), accounts: .constant(Account.sampleData), saveAction: {})
+        PAndLLineList(pAndLLines: .constant(PAndLLine.sampleData), accounts: .constant(Account.sampleData))
     }
 }
 

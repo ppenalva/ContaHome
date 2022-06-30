@@ -13,8 +13,6 @@ struct AccountEdit: View {
     @Binding var data: Account.Data
     @State private var newAccountNumber = ""
     
-    
-    
     var body: some View {
         Form {
             
