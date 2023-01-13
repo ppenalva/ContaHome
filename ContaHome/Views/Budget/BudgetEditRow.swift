@@ -1,17 +1,17 @@
 //
-//  PostingEditRow.swift
+//  BudgetEditRow.swift
 //  ContaHome
 //
-//  Created by Pablo Penalva on 28/4/22.
+//  Created by Pablo Penalva on 12/12/22.
 //
 
 import SwiftUI
 
-struct PostingEditRow: View {
+struct BudgetEditRow: View {
     
-    @Binding var data: Posting.Data
+    @Binding var data: Budget.Data
     @Binding var accounts: [Account]
-    
+   
     @StateObject var viewModel: AmountFormulaViewModel = .init()
     
     var body: some View {
@@ -20,8 +20,8 @@ struct PostingEditRow: View {
                 
                 DatePicker ("Date", selection: $data.date, in:...Date(), displayedComponents: .date)
                     .frame(minWidth: 150, idealWidth: 150, maxWidth: 150, minHeight: 20, idealHeight: 20, maxHeight: 20)
-                
-                
+             
+
                 TextField("Description", text: $data.description)
                     .frame(minWidth: 200, idealWidth: 800, maxWidth: 1000, minHeight: 20, idealHeight: 20, maxHeight: 20)
                 Spacer()
@@ -35,19 +35,18 @@ struct PostingEditRow: View {
             
             HStack {
                 Spacer()
-                
-                TextField("Formula Debit Amount", text: $viewModel.expresionDebitAmount)
-                    .onSubmit {
-                        data.debitAmount = viewModel.evaluateDebitFormula()
-                    }
-                    .frame(minWidth: 100, idealWidth: 150, maxWidth: 200, minHeight: 20, idealHeight: 20, maxHeight: 20)
-                TextField("Formula Credit Amount", text: $viewModel.expresionCreditAmount)
-                    .onSubmit {
-                        data.creditAmount = viewModel.evaluateCreditFormula()
-                    }
-                    .frame(minWidth: 100, idealWidth: 150, maxWidth: 200, minHeight: 20, idealHeight: 20, maxHeight: 20)
-            }
-            .frame(width: 600, height: 40)
+            TextField("Formula Debit Amount", text: $viewModel.expresionDebitAmount)
+                .onSubmit {
+                    data.debitAmount = viewModel.evaluateDebitFormula()
+                }
+                .frame(minWidth: 100, idealWidth: 150, maxWidth: 200, minHeight: 20, idealHeight: 20, maxHeight: 20)
+            TextField("Formula Credit Amount", text: $viewModel.expresionCreditAmount)
+                .onSubmit {
+                    data.creditAmount = viewModel.evaluateCreditFormula()
+                }
+                .frame(minWidth: 100, idealWidth: 150, maxWidth: 200, minHeight: 20, idealHeight: 20, maxHeight: 20)
+        }
+        .frame(width: 600, height: 40)
             VStack {
                 HStack {
                     Picker("Debit Account", selection: $data.firstAccount) {
@@ -69,11 +68,10 @@ struct PostingEditRow: View {
         }
     }
 }
-
-struct PostingEditRow_Previews: PreviewProvider {
-    static var postings = Posting.sampleData
+struct BudgetEditRow_Previews: PreviewProvider {
+    static var budgets = Budget.sampleData
     
     static var previews: some View {
-        PostingCreditRow(posting: postings[0])
+        BudgetCreditRow(budget: budgets[0])
     }
 }

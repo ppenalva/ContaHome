@@ -15,7 +15,6 @@ struct AccountEdit: View {
     
     var body: some View {
         Form {
-            
             VStack {
                 TextField("Name", text: $data.name)
             }

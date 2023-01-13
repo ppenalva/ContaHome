@@ -1,17 +1,13 @@
 //
-//  Posting.swift
+//  Budget.swift
 //  ContaHome
 //
-//  Created by Pablo Penalva on 27/4/22.
+//  Created by Pablo Penalva on 11/12/22.
 //
 
 import Foundation
 
-let dateFormatter = DateFormatter()
-
-
-
-struct Posting: Hashable, Codable, Identifiable {
+struct Budget: Hashable, Codable, Identifiable {
     var id: UUID
     var date: Date
     var description: String
@@ -44,15 +40,15 @@ struct Posting: Hashable, Codable, Identifiable {
     
 }
 
-extension Posting {
+extension Budget {
     
     
     
     struct Data {
         var date: Date = dateFormatter.date(from: "2000-01-01") ?? Date.now
-        var description: String = ""
-        var firstAccount: String = ""
-        var secondAccount: String = ""
+        var description: String = " "
+        var firstAccount: String = " "
+        var secondAccount: String = " "
         var debitAmount: Double = 0.00
         var creditAmount: Double = 0.00
         var cpuDate: Date = Date()
@@ -92,33 +88,33 @@ extension Posting {
     }
 }
 
-extension Posting {
+extension Budget {
     
     
  
-    static let sampleData: [Posting] =
+    static let sampleData: [Budget] =
     [
-        Posting(
+        Budget(
             date: dateFormatter.date( from:"2022-04-27") ?? Date(),
-            description: "Primer posting",
+            description: "Primer budget",
             firstAccount: "Cuenta Primera",
             secondAccount: "Cuenta Segunda",
             debitAmount: 1000.00,
             creditAmount: 0.0,
             cpuDate: Date()
         ),
-        Posting(
+        Budget(
             date: dateFormatter.date(from:"2022-04-27") ?? Date(),
-            description: "Primer posting",
+            description: "Primer budget",
             firstAccount: "Cuenta Primera",
             secondAccount: "Cuenta Tercera",
             debitAmount: 1000.00,
             creditAmount: 0.0,
             cpuDate: Date()
         ),
-        Posting(
+        Budget(
             date: dateFormatter.date(from:"2022-04-27") ?? Date(),
-            description: "Primer posting",
+            description: "Primer budget",
             firstAccount: "Cuenta Segunda",
             secondAccount: "Cuenta Tercera",
             debitAmount: 1000.00,

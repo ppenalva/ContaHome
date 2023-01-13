@@ -1,13 +1,13 @@
 //
-//  PostingCreditRow.swift
+//  PostingEditPrint.swift
 //  ContaHome
 //
-//  Created by Pablo Penalva on 28/4/22.
+//  Created by Pablo Penalva on 8/1/23.
 //
 
 import SwiftUI
 
-struct PostingCreditRow: View {
+struct PostingEditPrint: View {
     
     var posting: Posting
     
@@ -20,26 +20,27 @@ struct PostingCreditRow: View {
     var body: some View {
         VStack {
             HStack {
-                Text(posting.date, formatter: PostingDebitRow.taskDateFormat)
+                Text(posting.date, formatter: PostingEditPrint.taskDateFormat)
                 Text(posting.description)
                 Spacer()
                 
-                Text(String(format: "%.2f", posting.creditAmount))
-                Text(String(format: "%.2f", posting.debitAmount))
-            }
-            
+                    Text(String(format: "%.2f", posting.debitAmount))
+                    Text(String(format: "%.2f", posting.creditAmount))
+                            }
             HStack {
                 Text(posting.firstAccount)
                 Spacer()
+                Text(posting.secondAccount)
             }
+            
         }
     }
 }
 
-struct PostingCreditRow_Previews: PreviewProvider {
+struct PostingEditPrint_Previews: PreviewProvider {
     static var postings = Posting.sampleData
     
     static var previews: some View {
-        PostingCreditRow(posting: postings[0])
+        PostingDebitRow(posting: postings[0])
     }
 }

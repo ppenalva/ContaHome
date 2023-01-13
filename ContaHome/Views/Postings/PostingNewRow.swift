@@ -21,7 +21,7 @@ struct PostingNewRow: View {
     @Binding var postings: [Posting]
     @Binding var account: Account
     
-    
+    @StateObject var viewModel: AmountFormulaViewModel = .init()
     
     var body: some View {
         
@@ -29,9 +29,10 @@ struct PostingNewRow: View {
             HStack {
                 
                 DatePicker ("Date", selection: $data.date, in:...Date(), displayedComponents: .date)
+                    .frame(minWidth: 150, idealWidth: 150, maxWidth: 150, minHeight: 20, idealHeight: 20, maxHeight: 20)
                 
-                //            TextField ("Description", text: $data.description)
                 PredictingTextField(postings: self.$postings, predictedValues: self.$myPredictedValues, textFieldInput: self.$data.description, account: self.$account)
+                    .frame(minWidth: 250, idealWidth: 250, maxWidth: 250, minHeight: 20, idealHeight: 20, maxHeight: 20)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .onChange(of: data.description, perform: { newTag in
                         popupTagsPresented = true
@@ -55,15 +56,30 @@ struct PostingNewRow: View {
                             
                         }
                     }
-                    .frame(minWidth: 400, idealWidth: 600, maxWidth: 800, minHeight: 20, idealHeight: 20, maxHeight: 20)
                 
                 Spacer()
                 TextField("Debit Amount", value: $data.debitAmount, format: .number)
-                    .frame(minWidth: 100, idealWidth: 200, maxWidth: 300, minHeight: 20, idealHeight: 20, maxHeight: 20)
+                    .frame(minWidth: 100, idealWidth: 150, maxWidth: 200, minHeight: 20, idealHeight: 20, maxHeight: 20)
                 TextField("Credit Amount", value: $data.creditAmount, format: .number)
-                    .frame(minWidth: 100, idealWidth: 200, maxWidth: 300, minHeight: 20, idealHeight: 20, maxHeight: 20)
+                    .frame(minWidth: 100, idealWidth: 150, maxWidth: 200, minHeight: 20, idealHeight: 20, maxHeight: 20)
             }
-            .frame(width: 1000, height: 40)
+            .frame(width: 600, height: 40)
+            
+            HStack {
+                Spacer()
+                
+                TextField("Formula Debit Amount", text: $viewModel.expresionDebitAmount)
+                    .onSubmit {
+                        data.debitAmount = viewModel.evaluateDebitFormula()
+                    }
+                    .frame(minWidth: 100, idealWidth: 150, maxWidth: 200, minHeight: 20, idealHeight: 20, maxHeight: 20)
+                TextField("Formula Credit Amount", text: $viewModel.expresionCreditAmount)
+                    .onSubmit {
+                        data.creditAmount = viewModel.evaluateCreditFormula()
+                    }
+                    .frame(minWidth: 100, idealWidth: 150, maxWidth: 200, minHeight: 20, idealHeight: 20, maxHeight: 20)
+            }
+            .frame(width: 600, height: 40)
             
             HStack {
                 Picker("Account", selection: $data.secondAccount) {
@@ -74,8 +90,9 @@ struct PostingNewRow: View {
                 }
                 Spacer()
             }
-            .frame(width: 1000, height: 40)
+            .frame(width: 650, height: 40)
         }
+        .frame(width: 700, height: 150)
     }
 }
 

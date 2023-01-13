@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct PAndLPeticion: View {
+struct PAndLPostingsPetition: View {
     
-   @State var fechaInforme1desde = defaultFechaInforme1
+    @State var fechaInforme1desde = defaultFechaInforme1
     @State var fechaInforme1hasta = defaultFechaInforme2
     @State var fechaInforme2desde = defaultFechaInforme3
     @State var fechaInforme2hasta = defaultFechaInforme4
@@ -59,7 +59,7 @@ struct PAndLPeticion: View {
                 
                 Button("Execute") { buttonPressed = true }
                 NavigationLink("", destination:
-                                PAndLExecution ( accounts: $accounts, postings: $postings, pAndLLines: $pAndLLines, fechaInforme1desde: $fechaInforme1desde,  fechaInforme1hasta: $fechaInforme1hasta, fechaInforme2desde: $fechaInforme2desde, fechaInforme2hasta: $fechaInforme2hasta),
+                                PAndLPostingsExecution ( accounts: $accounts, postings: $postings, pAndLLines: $pAndLLines, fechaInforme1desde: $fechaInforme1desde,  fechaInforme1hasta: $fechaInforme1hasta, fechaInforme2desde: $fechaInforme2desde, fechaInforme2hasta: $fechaInforme2hasta),
                                isActive: $buttonPressed)
             }
         }

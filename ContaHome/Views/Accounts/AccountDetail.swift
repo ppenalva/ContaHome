@@ -13,14 +13,15 @@ struct AccountDetail: View {
     
     @Binding var postings: [Posting]
     @Binding var accounts: [Account]
-    @Binding var selectedAccount: Account
+    
+    @State var selectedPosting: Posting
+    
     
     @State private var isPresentingNewPostingView = false
     @State private var isPresentingEditPostingView = false
     
-    
     @State private var newPostingData = Posting.Data()
-    @State private var selectedPostingData = Posting.Data()
+    @State private var editPostingData = Posting.Data()
     
     private var filteredPostings: [Posting] {
         postings.filter { posting in
@@ -28,24 +29,46 @@ struct AccountDetail: View {
         }
     }
     
+    func importeCuenta ( postings:[Posting], cuenta: String ) -> Double  {
+        
+        
+        let importe1 = postings.filter({cuenta == $0.firstAccount}).map{$0.debitAmount}.reduce(0, +)
+        let importe2 = postings.filter({cuenta == $0.firstAccount}).map{$0.creditAmount}.reduce(0, +)
+        let importe3 = postings.filter({cuenta == $0.secondAccount}).map{$0.creditAmount}.reduce(0, +)
+        let importe4 = postings.filter({cuenta == $0.secondAccount}).map{$0.debitAmount}.reduce(0, +)
+        
+        let importe = importe1 - importe2 + importe3 - importe4
+        
+        return importe
+    }
+    
     var body: some View {
         
         List {
             
-            ForEach(filteredPostings) { filteredPosting in
+            ForEach (filteredPostings) { filteredPosting in
                 
-                if (account.name == filteredPosting.firstAccount) {
-                    PostingDebitRow(posting: filteredPosting)
-                } else {
-                    PostingCreditRow(posting: filteredPosting)
+                HStack {
+                    
+                    if (account.name == filteredPosting.firstAccount) {
+                        PostingDebitRow(posting: filteredPosting)
+                        
+                    } else {
+                        PostingCreditRow(posting: filteredPosting)
+                    }
+                    
+                }
+                .onTapGesture {
+                    self.selectedPosting = filteredPosting
+                    editPostingData = filteredPosting.data
+                    isPresentingEditPostingView = true
                 }
             }
             .onDelete(perform: removePosting)
+            
         }
+        .navigationTitle("\(account.name)     \(String(format: "%.2f", importeCuenta(postings: postings, cuenta: account.name)))")
         
-        
-        
-        .navigationTitle(account.name)
         .toolbar {
             Button(action: {
                 isPresentingNewPostingView = true
@@ -72,18 +95,42 @@ struct AccountDetail: View {
                                 newPosting.cpuDate = Date.now
                                 postings.append(newPosting)
                                 isPresentingNewPostingView = false
-                                //                            newPostingData = Posting.Data()
+                                
                                 newPostingData.description = ""
                                 newPostingData.debitAmount = 0.0
                                 newPostingData.creditAmount = 0.0
                                 newPostingData.firstAccount = ""
                                 newPostingData.secondAccount = ""
                             }
+                            .disabled(newPostingData.secondAccount.isEmpty)
                         }
                     }
             }
         }
         
+        .sheet(isPresented: $isPresentingEditPostingView) {
+            NavigationView  {
+                PostingEditRow( data: $editPostingData, accounts: $accounts)
+                
+                    .toolbar {
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button("Dismiss") {
+                                isPresentingEditPostingView = false
+                            }
+                        }
+                        ToolbarItem(placement: .confirmationAction) {
+                            Button("Confirm") {
+                                let editPosting = Posting(data: editPostingData)
+                                if let index = postings.firstIndex(of: selectedPosting){
+                                    postings[index] = editPosting
+                                }
+                                isPresentingEditPostingView = false
+                                
+                            }
+                        }
+                    }
+            }
+        }
     }
     func removePosting(at offsets: IndexSet) {
         for offset in offsets {
@@ -93,12 +140,3 @@ struct AccountDetail: View {
         }
     }
 }
-
-//struct AccountDetail_Previews: PreviewProvider {
-//    static var accounts = Account.sampleData
-//    static var previews: some View {
-//        NavigationView {
-//            AccountDetail(account: accounts[0], postings: .constant(Posting.sampleData), accounts: .constant(Account.sampleData), selectedAccount: accounts[1] )
-//        }
-//    }
-//}

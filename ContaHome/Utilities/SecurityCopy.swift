@@ -13,6 +13,7 @@ struct SecurityCopy: View {
     @State private var b = ""
     @State private var c = ""
     @State private var d = ""
+    @State private var e = ""
     
     var body: some View {
         
@@ -28,12 +29,14 @@ struct SecurityCopy: View {
                      b = (copyFile(at: "/Users/pablo/Library/Containers/com.pablo.penalva.ContaHome/Data/Documents/balanceLines.data", to: "/Users/pablo/Library/Containers/com.pablo.penalva.ContaHome/Data/Documents/balanceLinesCopy.data"))
                      c = (copyFile(at: "/Users/pablo/Library/Containers/com.pablo.penalva.ContaHome/Data/Documents/postings.data", to: "//Users/pablo/Library/Containers/com.pablo.penalva.ContaHome/Data/Documents/postingsCopy.data"))
                      d = (copyFile(at: "/Users/pablo/Library/Containers/com.pablo.penalva.ContaHome/Data/Documents/pAndLLines.data", to: "/Users/pablo/Library/Containers/com.pablo.penalva.ContaHome/Data/Documents/pAndLLinesCopy.data"))
+                    e = (copyFile(at: "/Users/pablo/Library/Containers/com.pablo.penalva.ContaHome/Data/Documents/budgets.data", to: "/Users/pablo/Library/Containers/com.pablo.penalva.ContaHome/Data/Documents/budgetsCopy.data"))
                     
                 }
                 Text(a)
                 Text(b)
                 Text(c)
                 Text(d)
+                Text(e)
             }
         }
     }
