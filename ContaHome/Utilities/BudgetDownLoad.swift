@@ -23,11 +23,11 @@ struct BudgetDownLoad: View {
         
         for budget in (budgets) {
             
-            fileData += BudgetDownLoad.taskDateFormat.string(from: budget.date) + ","
-            fileData += budget.description + ","
-            fileData += budget.firstAccount + ","
-            fileData += budget.secondAccount + ","
-            fileData += String(format: "%.2f", budget.debitAmount) + ","
+            fileData += BudgetDownLoad.taskDateFormat.string(from: budget.date) + ";"
+            fileData += budget.description + ";"
+            fileData += budget.firstAccount + ";"
+            fileData += budget.secondAccount + ";"
+            fileData += String(format: "%.2f", budget.debitAmount) + ";"
             fileData += String(format: "%.2f", budget.creditAmount) + "\r\n"
         }
         return fileData

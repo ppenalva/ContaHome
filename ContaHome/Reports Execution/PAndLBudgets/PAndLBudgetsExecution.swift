@@ -118,7 +118,7 @@ struct PAndLBudgetsExecution: View {
                 accountArray.append(item.account)
             }
             
-            let importe1 = postings.filter({($0.date >= fechaInforme1desde)&&($0.date <= fechaInforme1hasta) && (accountArray.contains( where: $0.firstAccount.elementsEqual))}).map{$0.debitAmount}.reduce(0, +)
+            let importe1 = budgets.filter({($0.date >= fechaInforme1desde)&&($0.date <= fechaInforme1hasta) && (accountArray.contains( where: $0.firstAccount.elementsEqual))}).map{$0.debitAmount}.reduce(0, +)
         
             let importe2 = budgets.filter({($0.date >= fechaInforme1desde)&&($0.date <= fechaInforme1hasta) && (accountArray.contains( where: $0.firstAccount.elementsEqual))}).map{$0.creditAmount}.reduce(0, +)
         

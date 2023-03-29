@@ -35,6 +35,7 @@ struct AccountList: View {
         
         .toolbar {
             Button(action: {
+                
                 isPresentingNewAccount = true
             }) {
                 Image(systemName: "plus")
@@ -43,6 +44,7 @@ struct AccountList: View {
         .sheet(isPresented: $isPresentingNewAccount) {
             
             AccountEdit(data: $newAccountData)
+            
                 .toolbar {
                     ToolbarItem(placement: .cancellationAction) {
                         Button("Dismiss") {

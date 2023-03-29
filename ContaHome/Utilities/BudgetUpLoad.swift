@@ -49,36 +49,37 @@ struct BudgetUpLoad: View {
                     let myData = readCSV(inputFile: "budget.csv", separator: "\r\n")
                     
                     for item in myData {
-                        
-                        
-                        let columns = item.components(separatedBy: ";")
-                        
-                        var newBudget = Budget(data: newBudgetData)
-                        
-                        let dateFormatter = DateFormatter()
-                        dateFormatter.dateFormat = "MM/dd/yy"
-                        newBudget.date = dateFormatter.date(from:columns[0]) ?? Date()
-                        newBudget.id = UUID()
-                        
-                        newBudget.description = columns[1]
-                        
-                        newBudget.firstAccount = columns[2]
-                        
-                        newBudget.secondAccount = columns[3]
-                        
-                        newBudget.debitAmount = (Double(columns[4]) ?? 0.0)
-                        
-                        newBudget.creditAmount = (Double(columns[5]) ?? 0.0)
-                        
-                        newBudget.cpuDate = Date.now
-                
-                        budgets.append(newBudget)
-                        
-                        newBudgetData = Budget.Data()
-                        
-                        
+                        if item != "" {
+                            
+                            let columns = item.components(separatedBy: ",")
+                            
+                            var newBudget = Budget(data: newBudgetData)
+                            
+                            let dateFormatter = DateFormatter()
+                            dateFormatter.dateFormat = "MM/dd/yy"
+                            newBudget.date = dateFormatter.date(from:columns[0]) ?? Date()
+                            newBudget.id = UUID()
+                            
+                            newBudget.description = columns[1]
+                            
+                            newBudget.firstAccount = columns[2]
+                            
+                            newBudget.secondAccount = columns[3]
+                            
+                            newBudget.debitAmount = (Double(columns[4]) ?? 0.0)
+                            
+                            newBudget.creditAmount = (Double(columns[5]) ?? 0.0)
+                            
+                            newBudget.cpuDate = Date.now
+                            
+                            budgets.append(newBudget)
+                            
+                            newBudgetData = Budget.Data()
+                            
+                            
+                        }
+                        saveAction()
                     }
-                    saveAction()
                 }
             }
         }
